@@ -1,4 +1,3 @@
-
 import { Shot } from '@/types';
 
 export const shots: Shot[] = [
@@ -34,7 +33,7 @@ export const shots: Shot[] = [
         id: "d1",
         name: "Drive with Step Drill",
         description: "Practice step-drives with cones to ensure proper weight transfer",
-        videoId: "5o2Pc2JCSPk",
+        videoId: "d6_2ToGYLBg",
         weaknessTag: ["balance", "weight transfer"],
         difficulty: "Beginner"
       },
