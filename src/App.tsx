@@ -8,6 +8,7 @@ import { ShotProvider } from "./contexts/ShotContext";
 import Index from "./pages/Index";
 import ShotsPage from "./pages/Shots";
 import ShotDetailPage from "./pages/ShotDetail";
+import ShotAnalysisPage from "./pages/ShotAnalysis";
 import DrillsPage from "./pages/Drills";
 import MyNotesPage from "./pages/MyNotes";
 import AddNotesPage from "./pages/AddNotes";
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/shots" element={<ShotsPage />} />
             <Route path="/shot/:shotId" element={<ShotDetailPage />} />
             <Route path="/add-notes/:shotId" element={<AddNotesPage />} />
+            <Route path="/analysis" element={<ShotAnalysisPage />} />
             <Route path="/drills" element={<DrillsPage />} />
             <Route path="/my-notes" element={<MyNotesPage />} />
             <Route path="*" element={<NotFound />} />

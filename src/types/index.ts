@@ -40,3 +40,10 @@ export interface ShotNote {
   weaknessTags: string[];
   mediaUrl?: string;
 }
+
+export interface ShotAnalysis {
+  positives: string[];
+  improvements: string[];
+  technicalAnalysis: string;
+  performanceScore: number;
+}

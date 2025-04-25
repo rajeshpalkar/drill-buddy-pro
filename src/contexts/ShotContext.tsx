@@ -1,6 +1,6 @@
 
 import React, { createContext, useContext, useState } from 'react';
-import { Shot, ShotNote } from '@/types';
+import { Shot, ShotNote, ShotAnalysis } from '@/types';
 import { shots } from '@/data/shotsData';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -11,6 +11,7 @@ type ShotContextType = {
   selectShot: (id: string) => void;
   addNote: (note: Omit<ShotNote, 'id'>) => void;
   filteredShots: (category?: string, type?: string, search?: string) => Shot[];
+  analyzeShot: (imageUrl: string, shotType: string) => Promise<ShotAnalysis | null>;
 };
 
 const ShotContext = createContext<ShotContextType>({} as ShotContextType);
@@ -53,6 +54,123 @@ export const ShotProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
   };
 
+  const analyzeShot = async (imageUrl: string, shotType: string): Promise<ShotAnalysis | null> => {
+    try {
+      const apiKey = localStorage.getItem('perplexityApiKey');
+      
+      if (!apiKey) {
+        toast({
+          title: "API Key Missing",
+          description: "Please add your Perplexity API key in the settings",
+          variant: "destructive"
+        });
+        return null;
+      }
+
+      // Get relevant shot information for better analysis
+      const shotInfo = shots.find(s => s.name.toLowerCase() === shotType.toLowerCase());
+      
+      const keyPoints = shotInfo ? 
+        `Key technical points: ${shotInfo.keyPointers.join(", ")}` : 
+        "Focus on stance, balance, head position, follow-through, and overall technique";
+        
+      const commonMistakes = shotInfo ? 
+        `Common mistakes: ${shotInfo.commonMistakes.map(m => m.description).join(", ")}` : 
+        "Common mistakes include incorrect balance, poor timing, head position issues";
+
+      const prompt = `
+        You are a professional cricket coach analyzing a cricket shot. 
+        This is a ${shotType} cricket shot image.
+        ${keyPoints}
+        ${commonMistakes}
+        
+        Analyze this image in detail and provide feedback in this JSON structure:
+        {
+          "positives": ["list 3-4 technical aspects done correctly"],
+          "improvements": ["list 3-4 specific corrections needed"],
+          "technicalAnalysis": "detailed paragraph with professional cricket coaching advice",
+          "performanceScore": [number between 1-10]
+        }
+        
+        Focus only on visible technical aspects. Be specific and use cricket terminology.
+      `;
+
+      const response = await fetch('https://api.perplexity.ai/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'llama-3.1-sonar-small-128k-online',
+          messages: [
+            {
+              role: 'system',
+              content: 'You are a professional cricket coach. Provide precise technical analysis.'
+            },
+            {
+              role: 'user',
+              content: [
+                {
+                  type: "text",
+                  text: prompt
+                },
+                {
+                  type: "image_url",
+                  image_url: imageUrl
+                }
+              ]
+            }
+          ],
+          temperature: 0.3,
+          max_tokens: 1000,
+          return_images: false,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to analyze shot');
+      }
+
+      const data = await response.json();
+      let analysisText = data.choices[0].message.content;
+      
+      // Try to parse the JSON response
+      try {
+        // Find JSON in the response if it contains text before/after
+        const jsonMatch = analysisText.match(/\{[\s\S]*\}/);
+        const jsonContent = jsonMatch ? jsonMatch[0] : analysisText;
+        const analysis = JSON.parse(jsonContent);
+        
+        toast({
+          title: "Analysis Complete",
+          description: "Your shot has been analyzed successfully!",
+        });
+        
+        return analysis;
+      } catch (error) {
+        console.error("Error parsing analysis:", error);
+        console.log("Received content:", analysisText);
+        
+        // Fallback to returning a structured response
+        return {
+          positives: ["The shot was analyzed but structured data couldn't be parsed"],
+          improvements: ["Please try again with a clearer image"],
+          technicalAnalysis: analysisText,
+          performanceScore: 5
+        };
+      }
+    } catch (error) {
+      console.error("Shot analysis error:", error);
+      toast({
+        title: "Analysis Failed",
+        description: "There was an error analyzing your shot. Please try again.",
+        variant: "destructive"
+      });
+      return null;
+    }
+  };
+
   return (
     <ShotContext.Provider value={{
       allShots: shots,
@@ -60,7 +178,8 @@ export const ShotProvider: React.FC<{ children: React.ReactNode }> = ({ children
       shotNotes,
       selectShot,
       addNote,
-      filteredShots
+      filteredShots,
+      analyzeShot
     }}>
       {children}
     </ShotContext.Provider>
