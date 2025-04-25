@@ -43,8 +43,8 @@ export const ShotProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const filteredShots = (category?: string, type?: string, search?: string) => {
     return shots.filter(shot => {
-      const matchesCategory = !category || shot.category === category;
-      const matchesType = !type || shot.type === type;
+      const matchesCategory = !category || category === 'all' || shot.category === category;
+      const matchesType = !type || type === 'all' || shot.type === type;
       const matchesSearch = !search || 
         shot.name.toLowerCase().includes(search.toLowerCase()) || 
         shot.description.toLowerCase().includes(search.toLowerCase());

@@ -49,7 +49,7 @@ const ShotsPage: React.FC = () => {
               <SelectValue placeholder="Category" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Categories</SelectItem>
+              <SelectItem value="all">All Categories</SelectItem>
               <SelectItem value="Front Foot">Front Foot</SelectItem>
               <SelectItem value="Back Foot">Back Foot</SelectItem>
             </SelectContent>
@@ -60,7 +60,7 @@ const ShotsPage: React.FC = () => {
               <SelectValue placeholder="Type" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Types</SelectItem>
+              <SelectItem value="all">All Types</SelectItem>
               <SelectItem value="Straight Bat">Straight Bat</SelectItem>
               <SelectItem value="Cross Bat">Cross Bat</SelectItem>
             </SelectContent>
