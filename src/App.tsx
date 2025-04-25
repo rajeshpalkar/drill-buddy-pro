@@ -1,9 +1,16 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ShotProvider } from "./contexts/ShotContext";
 import Index from "./pages/Index";
+import ShotsPage from "./pages/Shots";
+import ShotDetailPage from "./pages/ShotDetail";
+import DrillsPage from "./pages/Drills";
+import MyNotesPage from "./pages/MyNotes";
+import AddNotesPage from "./pages/AddNotes";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -11,15 +18,21 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <ShotProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/shots" element={<ShotsPage />} />
+            <Route path="/shot/:shotId" element={<ShotDetailPage />} />
+            <Route path="/add-notes/:shotId" element={<AddNotesPage />} />
+            <Route path="/drills" element={<DrillsPage />} />
+            <Route path="/my-notes" element={<MyNotesPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </ShotProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
