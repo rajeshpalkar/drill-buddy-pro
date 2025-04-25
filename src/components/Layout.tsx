@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
-  Cricket, 
+  Target, 
   PenSquare, 
   Play,
   Search,
@@ -24,7 +23,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <header className="bg-cricket-green text-white p-4">
         <div className="container mx-auto flex justify-between items-center">
           <Link to="/" className="text-xl font-bold flex items-center gap-2">
-            <Cricket size={24} />
+            <Target size={24} />
             <span>DrillBuddy</span>
           </Link>
           <div className="hidden md:flex items-center gap-4">
@@ -57,7 +56,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <nav className="bg-white border-t border-gray-200 fixed bottom-0 w-full px-4 py-2">
           <div className="flex justify-around">
             <Link to="/" className="flex flex-col items-center">
-              <Cricket size={20} className="text-cricket-green" />
+              <Target size={20} className="text-cricket-green" />
               <span className="text-xs mt-1">Library</span>
             </Link>
             <Link to="/shots" className="flex flex-col items-center">
