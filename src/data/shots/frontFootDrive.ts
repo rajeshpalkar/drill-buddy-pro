@@ -33,7 +33,7 @@ export const frontFootDrive: Shot = {
       id: "d1",
       name: "Drive with Step Drill",
       description: "Practice step-drives with cones to ensure proper weight transfer",
-      videoId: "https://www.youtube.com/watch?v=YuqjxjhkR8Q",
+      videoId: "https://www.youtube.com/watch?v=TSxJVw57jqs",
       weaknessTag: ["balance", "weight transfer"],
       difficulty: "Beginner"
     },
@@ -41,7 +41,7 @@ export const frontFootDrive: Shot = {
       id: "d2",
       name: "Wall Drive Drill",
       description: "Practice drives against a wall to maintain straight bat position",
-      videoId: "https://www.youtube.com/watch?v=2GQGOVNQwKE",
+      videoId: "https://www.youtube.com/watch?v=TSxJVw57jqs",
       weaknessTag: ["bat angle", "follow through"],
       difficulty: "Intermediate"
     }
