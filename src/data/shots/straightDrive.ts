@@ -1,4 +1,3 @@
-
 import { Shot } from '@/types';
 
 export const straightDrive: Shot = {
@@ -19,32 +18,32 @@ export const straightDrive: Shot = {
       id: "m9",
       description: "Hitting across the line",
       correction: "Maintain straight bat alignment throughout the shot",
-      videoId: "https://www.youtube.com/watch?v=YuqjxjhkR8Q"
+      videoId: "https://www.youtube.com/watch?v=fTq4N3nPA8o"
     },
     {
       id: "m10",
       description: "Not getting to pitch of ball",
       correction: "Ensure proper step length to reach the ball",
-      videoId: "https://www.youtube.com/watch?v=2GQGOVNQwKE"
+      videoId: "https://www.youtube.com/watch?v=UUlklBbmXwo"
     }
   ],
   suggestedDrills: [
     {
       id: "d9",
       name: "Straight Line Drill",
-      description: "Use markers to practice keeping drives in a straight line",
-      videoId: "https://www.youtube.com/watch?v=YuqjxjhkR8Q",
+      description: "Use cones to ensure your bat swing and follow-through stay straight.",
+      videoId: "https://www.youtube.com/watch?v=xxcJdHD55Aw",
       weaknessTag: ["direction", "bat angle"],
       difficulty: "Beginner"
     },
     {
       id: "d10",
       name: "Front Foot Constraint Drill",
-      description: "Practice with limited backswing to focus on weight transfer",
-      videoId: "https://www.youtube.com/watch?v=2GQGOVNQwKE",
+      description: "Practice limiting backswing to emphasize correct weight transfer forward.",
+      videoId: "https://www.youtube.com/watch?v=ZtEG9KPCoK0",
       weaknessTag: ["weight transfer", "balance"],
       difficulty: "Intermediate"
     }
   ],
-  tutorialVideoId: "https://www.youtube.com/watch?v=YuqjxjhkR8Q"
+  tutorialVideoId: "https://www.youtube.com/watch?v=fTq4N3nPA8o"
 };
