@@ -32,7 +32,7 @@ export const frontFootDrive: Shot = {
       id: "d1",
       name: "Drive with Step Drill",
       description: "Practice step-drives with cones to ensure proper weight transfer",
-      videoId: "https://www.youtube.com/watch?v=fZQcaRV1uRM",
+      videoId: "https://www.youtube.com/watch?v=FkF6bsnW5bE",
       weaknessTag: ["balance", "weight transfer"],
       difficulty: "Beginner"
     },
@@ -45,5 +45,5 @@ export const frontFootDrive: Shot = {
       difficulty: "Intermediate"
     }
   ],
-  tutorialVideoId: "https://www.youtube.com/watch?v=UyrxiJzG5ds"
+  tutorialVideoId: "https://www.youtube.com/watch?v=yeImrfgNJoM"
 };
