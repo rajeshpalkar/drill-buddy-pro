@@ -1,4 +1,3 @@
-
 import { Shot } from '@/types';
 
 export const frontFootDrive: Shot = {
@@ -19,13 +18,13 @@ export const frontFootDrive: Shot = {
       id: "m1",
       description: "Head falling to off-side during drive",
       correction: "Keep head steady and directly over front foot",
-      videoId: "FgZo-0pR9A0"
+      videoId: "rGs0g_tjQ0g"
     },
     {
       id: "m2",
       description: "Closing bat face too early",
       correction: "Maintain straight bat throughout the shot",
-      videoId: "E-8O69ldMhI"
+      videoId: "V_ZsBB6h-Ws"
     }
   ],
   suggestedDrills: [
@@ -33,7 +32,7 @@ export const frontFootDrive: Shot = {
       id: "d1",
       name: "Drive with Step Drill",
       description: "Practice step-drives with cones to ensure proper weight transfer",
-      videoId: "d6_2ToGYLBg",
+      videoId: "EqT_cYkFl5Y",
       weaknessTag: ["balance", "weight transfer"],
       difficulty: "Beginner"
     },
@@ -46,5 +45,5 @@ export const frontFootDrive: Shot = {
       difficulty: "Intermediate"
     }
   ],
-  tutorialVideoId: "N8lwJt_gW3Y"
+  tutorialVideoId: "uZtxwaNxeyE"
 };

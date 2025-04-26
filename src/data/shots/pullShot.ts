@@ -1,4 +1,3 @@
-
 import { Shot } from '@/types';
 
 export const pullShot: Shot = {
@@ -19,13 +18,13 @@ export const pullShot: Shot = {
       id: "m5",
       description: "Getting too far across",
       correction: "Maintain balance and avoid over-rotating",
-      videoId: "9aK8XG4_1jg"
+      videoId: "1PjqxN_dhGU"
     },
     {
       id: "m6",
       description: "Pulling from outside off stump",
       correction: "Be selective with line, pull only when appropriate",
-      videoId: "CbZS3cMGww8"
+      videoId: "d5Qnh1k4WYM"
     }
   ],
   suggestedDrills: [
@@ -33,7 +32,7 @@ export const pullShot: Shot = {
       id: "d5",
       name: "Short Ball Pull Practice",
       description: "Dedicated session focused on short ball pulling technique",
-      videoId: "W7EXsXdBdrk",
+      videoId: "bYuZMnM_oJE",
       weaknessTag: ["timing", "shot selection"],
       difficulty: "Advanced"
     },
@@ -46,5 +45,5 @@ export const pullShot: Shot = {
       difficulty: "Intermediate"
     }
   ],
-  tutorialVideoId: "WAXjEr94RpA"
+  tutorialVideoId: "3gGpGkGDONE"
 };

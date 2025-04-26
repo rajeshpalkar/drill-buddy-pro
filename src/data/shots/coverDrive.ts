@@ -1,4 +1,3 @@
-
 import { Shot } from '@/types';
 
 export const coverDrive: Shot = {
@@ -19,13 +18,13 @@ export const coverDrive: Shot = {
       id: "m3",
       description: "Reaching for the ball",
       correction: "Wait for the ball and transfer weight correctly",
-      videoId: "VP7nSMFhYqI"
+      videoId: "uVq_c3rJ9zM"
     },
     {
       id: "m4",
       description: "Lack of footwork",
       correction: "Ensure proper step towards the pitch of the ball",
-      videoId: "HN8Fvx0Urns"
+      videoId: "qk9kGxUP_9Y"
     }
   ],
   suggestedDrills: [
@@ -33,7 +32,7 @@ export const coverDrive: Shot = {
       id: "d3",
       name: "Cone Cover Drive",
       description: "Place cones in cover area and aim to hit between them",
-      videoId: "vYD9imXJ0j0",
+      videoId: "LTQwqGJ-ndM",
       weaknessTag: ["direction", "timing"],
       difficulty: "Intermediate"
     },
@@ -46,5 +45,5 @@ export const coverDrive: Shot = {
       difficulty: "Beginner"
     }
   ],
-  tutorialVideoId: "HJZFQwMZg8k"
+  tutorialVideoId: "NkUAWEcLSGk"
 };

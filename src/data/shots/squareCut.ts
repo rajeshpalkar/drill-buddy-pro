@@ -1,4 +1,3 @@
-
 import { Shot } from '@/types';
 
 export const squareCut: Shot = {
@@ -19,13 +18,13 @@ export const squareCut: Shot = {
       id: "m7",
       description: "Cutting balls too close to body",
       correction: "Only cut balls with width, select appropriate deliveries",
-      videoId: "IoJsJNtYm3U"
+      videoId: "ZQ3AZPwcH6U"
     },
     {
       id: "m8",
       description: "Cutting with low hands",
       correction: "Keep hands high for downward angle and control",
-      videoId: "tnhH0nC267k"
+      videoId: "xQu_NFvr6Wc"
     }
   ],
   suggestedDrills: [
@@ -33,7 +32,7 @@ export const squareCut: Shot = {
       id: "d7",
       name: "Width Cut Drill",
       description: "Practice cutting with marked zones for appropriate width",
-      videoId: "2Ds5RJywcUk",
+      videoId: "wJF-vXS0bGs",
       weaknessTag: ["shot selection", "judgment"],
       difficulty: "Intermediate"
     },
@@ -46,5 +45,5 @@ export const squareCut: Shot = {
       difficulty: "Advanced"
     }
   ],
-  tutorialVideoId: "qe9P7qRvOSI"
+  tutorialVideoId: "YTB1dCA53PU"
 };
