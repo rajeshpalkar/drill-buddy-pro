@@ -25,8 +25,8 @@ import { Search } from 'lucide-react';
 const DrillsPage: React.FC = () => {
   const { allShots } = useShotContext();
   const [searchQuery, setSearchQuery] = useState('');
-  const [difficulty, setDifficulty] = useState('');
-  const [weakness, setWeakness] = useState('');
+  const [difficulty, setDifficulty] = useState('all');
+  const [weakness, setWeakness] = useState('all');
   
   // Extract all drills from all shots
   const allDrills = allShots.flatMap(shot => shot.suggestedDrills);
@@ -42,9 +42,9 @@ const DrillsPage: React.FC = () => {
       drill.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       drill.description.toLowerCase().includes(searchQuery.toLowerCase());
       
-    const matchesDifficulty = !difficulty || drill.difficulty === difficulty;
+    const matchesDifficulty = difficulty === 'all' || drill.difficulty === difficulty;
     
-    const matchesWeakness = !weakness || drill.weaknessTag.includes(weakness);
+    const matchesWeakness = weakness === 'all' || drill.weaknessTag.includes(weakness);
     
     return matchesSearch && matchesDifficulty && matchesWeakness;
   });
@@ -85,7 +85,7 @@ const DrillsPage: React.FC = () => {
               <SelectValue placeholder="Difficulty Level" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Levels</SelectItem>
+              <SelectItem value="all">All Levels</SelectItem>
               <SelectItem value="Beginner">Beginner</SelectItem>
               <SelectItem value="Intermediate">Intermediate</SelectItem>
               <SelectItem value="Advanced">Advanced</SelectItem>
@@ -97,7 +97,7 @@ const DrillsPage: React.FC = () => {
               <SelectValue placeholder="Weakness Focus" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">All Areas</SelectItem>
+              <SelectItem value="all">All Areas</SelectItem>
               {allWeaknessTags.map(tag => (
                 <SelectItem key={tag} value={tag}>{tag}</SelectItem>
               ))}

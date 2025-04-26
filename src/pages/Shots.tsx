@@ -15,8 +15,8 @@ import { Search } from 'lucide-react';
 
 const ShotsPage: React.FC = () => {
   const { filteredShots } = useShotContext();
-  const [category, setCategory] = useState<string>("");
-  const [type, setType] = useState<string>("");
+  const [category, setCategory] = useState<string>("all");
+  const [type, setType] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
   
   const shots = filteredShots(category, type, searchQuery);
