@@ -18,13 +18,13 @@ export const squareCut: Shot = {
       id: "m7",
       description: "Cutting balls too close to body",
       correction: "Only cut balls with width, select appropriate deliveries",
-      videoId: "https://www.youtube.com/watch?v=dVDln1VlxKI"
+      videoId: "https://www.youtube.com/watch?v=ShHLd1D-N5Q"
     },
     {
       id: "m8",
       description: "Cutting with low hands",
       correction: "Keep hands high for downward angle and control",
-      videoId: "https://www.youtube.com/watch?v=ROw5OnbW1PE"
+      videoId: "https://www.youtube.com/watch?v=lOrvLCcUjGk"
     }
   ],
   suggestedDrills: [
@@ -32,7 +32,7 @@ export const squareCut: Shot = {
       id: "d7",
       name: "Width Cut Drill",
       description: "Practice cutting with marked zones for appropriate width",
-      videoId: "https://www.youtube.com/watch?v=DZqxt3Z7HlQ",
+      videoId: "https://www.youtube.com/watch?v=klorWQfoxsc",
       weaknessTag: ["shot selection", "judgment"],
       difficulty: "Intermediate"
     },
@@ -40,10 +40,10 @@ export const squareCut: Shot = {
       id: "d8",
       name: "High Hands Cut Practice",
       description: "Focused drill to maintain high hands during cutting",
-      videoId: "https://www.youtube.com/watch?v=xIO8A6-nJnw",
+      videoId: "https://www.youtube.com/watch?v=_tMLsCVcUxs",
       weaknessTag: ["technique", "hand position"],
       difficulty: "Advanced"
     }
   ],
-  tutorialVideoId: "https://www.youtube.com/watch?v=ROw5OnbW1PE"
+  tutorialVideoId: "https://www.youtube.com/watch?v=3oQzw0oSgU4"
 };
