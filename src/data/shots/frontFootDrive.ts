@@ -19,13 +19,13 @@ export const frontFootDrive: Shot = {
       id: "m1",
       description: "Head falling to off-side during drive",
       correction: "Keep head steady and directly over front foot",
-      videoId: "p9BE1lbWqxA"
+      videoId: "https://www.youtube.com/watch?v=qw-Jk0wYW5o"
     },
     {
       id: "m2",
       description: "Closing bat face too early",
       correction: "Maintain straight bat throughout the shot",
-      videoId: "SZI3dHJ21bM"
+      videoId: "https://www.youtube.com/watch?v=VTPjhkZuSaM"
     }
   ],
   suggestedDrills: [
@@ -33,7 +33,7 @@ export const frontFootDrive: Shot = {
       id: "d1",
       name: "Drive with Step Drill",
       description: "Practice step-drives with cones to ensure proper weight transfer",
-      videoId: "nN3flHNAuqM",
+      videoId: "https://www.youtube.com/watch?v=iN-oRktPyYo",
       weaknessTag: ["balance", "weight transfer"],
       difficulty: "Beginner"
     },
@@ -41,10 +41,10 @@ export const frontFootDrive: Shot = {
       id: "d2",
       name: "Wall Drive Drill",
       description: "Practice drives against a wall to maintain straight bat position",
-      videoId: "jdVfNGsOdvE",
+      videoId: "https://www.youtube.com/watch?v=_uOCl_hZ6Jo",
       weaknessTag: ["bat angle", "follow through"],
       difficulty: "Intermediate"
     }
   ],
-  tutorialVideoId: "nN3flHNAuqM"
+  tutorialVideoId: "https://www.youtube.com/watch?v=iN-oRktPyYo"
 };
