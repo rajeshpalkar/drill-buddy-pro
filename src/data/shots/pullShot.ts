@@ -1,3 +1,4 @@
+
 import { Shot } from '@/types';
 
 export const pullShot: Shot = {
@@ -18,13 +19,13 @@ export const pullShot: Shot = {
       id: "m5",
       description: "Getting too far across",
       correction: "Maintain balance and avoid over-rotating",
-      videoId: "1PjqxN_dhGU"
+      videoId: "JN-JT4XqUBs"
     },
     {
       id: "m6",
       description: "Pulling from outside off stump",
       correction: "Be selective with line, pull only when appropriate",
-      videoId: "d5Qnh1k4WYM"
+      videoId: "JN-JT4XqUBs"
     }
   ],
   suggestedDrills: [
@@ -32,7 +33,7 @@ export const pullShot: Shot = {
       id: "d5",
       name: "Short Ball Pull Practice",
       description: "Dedicated session focused on short ball pulling technique",
-      videoId: "bYuZMnM_oJE",
+      videoId: "2ORjgD9I544",
       weaknessTag: ["timing", "shot selection"],
       difficulty: "Advanced"
     },
@@ -40,10 +41,10 @@ export const pullShot: Shot = {
       id: "d6",
       name: "Tennis Ball Pull Drill",
       description: "Use tennis balls for safe practice of pulling short balls",
-      videoId: "lB93T9R14-w",
+      videoId: "2ORjgD9I544",
       weaknessTag: ["fear", "balance"],
       difficulty: "Intermediate"
     }
   ],
-  tutorialVideoId: "3gGpGkGDONE"
+  tutorialVideoId: "JN-JT4XqUBs"
 };

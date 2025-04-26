@@ -1,3 +1,4 @@
+
 import { Shot } from '@/types';
 
 export const straightDrive: Shot = {
@@ -18,13 +19,13 @@ export const straightDrive: Shot = {
       id: "m9",
       description: "Hitting across the line",
       correction: "Maintain straight bat alignment throughout the shot",
-      videoId: "mX7pvsqltmE"
+      videoId: "SZI3dHJ21bM"
     },
     {
       id: "m10",
       description: "Not getting to pitch of ball",
       correction: "Ensure proper step length to reach the ball",
-      videoId: "8FtXhBWqN68"
+      videoId: "AGtJiQTYnEU"
     }
   ],
   suggestedDrills: [
@@ -32,7 +33,7 @@ export const straightDrive: Shot = {
       id: "d9",
       name: "Straight Line Drill",
       description: "Use markers to practice keeping drives in a straight line",
-      videoId: "DZN8CXcMUlE",
+      videoId: "p9BE1lbWqxA",
       weaknessTag: ["direction", "bat angle"],
       difficulty: "Beginner"
     },
@@ -40,10 +41,10 @@ export const straightDrive: Shot = {
       id: "d10",
       name: "Front Foot Constraint Drill",
       description: "Practice with limited backswing to focus on weight transfer",
-      videoId: "AhC3ZvpBayA",
+      videoId: "nN3flHNAuqM",
       weaknessTag: ["weight transfer", "balance"],
       difficulty: "Intermediate"
     }
   ],
-  tutorialVideoId: "5qUY5tZ2Ops"
+  tutorialVideoId: "p9BE1lbWqxA"
 };
