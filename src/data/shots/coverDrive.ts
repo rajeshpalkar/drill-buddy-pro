@@ -19,13 +19,13 @@ export const coverDrive: Shot = {
       id: "m3",
       description: "Reaching for the ball",
       correction: "Wait for the ball and transfer weight correctly",
-      videoId: "https://www.youtube.com/watch?v=VTPjhkZuSaM"
+      videoId: "https://www.youtube.com/watch?v=2GQGOVNQwKE"
     },
     {
       id: "m4",
       description: "Lack of footwork",
       correction: "Ensure proper step towards the pitch of the ball",
-      videoId: "https://www.youtube.com/watch?v=qw-Jk0wYW5o"
+      videoId: "https://www.youtube.com/watch?v=YuqjxjhkR8Q"
     }
   ],
   suggestedDrills: [
@@ -33,7 +33,7 @@ export const coverDrive: Shot = {
       id: "d3",
       name: "Cone Cover Drive",
       description: "Place cones in cover area and aim to hit between them",
-      videoId: "https://www.youtube.com/watch?v=_uOCl_hZ6Jo",
+      videoId: "https://www.youtube.com/watch?v=YuqjxjhkR8Q",
       weaknessTag: ["direction", "timing"],
       difficulty: "Intermediate"
     },
@@ -41,10 +41,10 @@ export const coverDrive: Shot = {
       id: "d4",
       name: "Chair Cover Drive",
       description: "Use chair as guide for maintaining elbow position",
-      videoId: "https://www.youtube.com/watch?v=iN-oRktPyYo",
+      videoId: "https://www.youtube.com/watch?v=2GQGOVNQwKE",
       weaknessTag: ["elbow position", "bat angle"],
       difficulty: "Beginner"
     }
   ],
-  tutorialVideoId: "https://www.youtube.com/watch?v=_uOCl_hZ6Jo"
+  tutorialVideoId: "https://www.youtube.com/watch?v=2GQGOVNQwKE"
 };
