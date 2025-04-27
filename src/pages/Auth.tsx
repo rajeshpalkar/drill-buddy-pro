@@ -28,8 +28,8 @@ const AuthPage = () => {
             variables: {
               default: {
                 colors: {
-                  brand: '#166534', // cricket-green
-                  brandAccent: '#15803d',
+                  brand: '#B71C1C', // Updated to match the cricket-green color in tailwind config
+                  brandAccent: '#D32F2F',
                 },
               },
             },
