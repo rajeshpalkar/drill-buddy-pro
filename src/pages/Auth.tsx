@@ -28,11 +28,11 @@ const AuthPage = () => {
             variables: {
               default: {
                 colors: {
-                  brand: '#B71C1C', // Updated to match the cricket-green color in tailwind config
-                  brandAccent: '#D32F2F',
-                },
-              },
-            },
+                  brand: '#B71C1C',
+                  brandAccent: '#D32F2F'
+                }
+              }
+            }
           }}
           providers={['google']}
           redirectTo={window.location.origin}
