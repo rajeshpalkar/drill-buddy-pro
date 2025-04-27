@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState } from 'react';
 import { Shot, ShotNote, ShotAnalysis } from '@/types';
 import { shots } from '@/data/shotsData';
@@ -60,8 +59,8 @@ export const ShotProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       if (!apiKey) {
         toast({
-          title: "API Key Missing",
-          description: "Please add your Perplexity API key in the settings",
+          title: "Configuration Error",
+          description: "Please contact support to enable shot analysis.",
           variant: "destructive"
         });
         return null;
@@ -137,7 +136,6 @@ export const ShotProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       // Try to parse the JSON response
       try {
-        // Find JSON in the response if it contains text before/after
         const jsonMatch = analysisText.match(/\{[\s\S]*\}/);
         const jsonContent = jsonMatch ? jsonMatch[0] : analysisText;
         const analysis = JSON.parse(jsonContent);
@@ -152,7 +150,6 @@ export const ShotProvider: React.FC<{ children: React.ReactNode }> = ({ children
         console.error("Error parsing analysis:", error);
         console.log("Received content:", analysisText);
         
-        // Fallback to returning a structured response
         return {
           positives: ["The shot was analyzed but structured data couldn't be parsed"],
           improvements: ["Please try again with a clearer image"],
