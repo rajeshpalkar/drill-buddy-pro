@@ -5,8 +5,16 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Layout from '@/components/Layout';
 import { BookOpen, PenSquare, Play } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
 
 const Index = () => {
+  const { user } = useAuth();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+  };
+
   return (
     <Layout>
       <div className="flex flex-col gap-8">
@@ -21,12 +29,25 @@ const Index = () => {
               to take your cricket game to the next level.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button asChild size="lg" className="bg-white text-cricket-green hover:bg-cricket-cream">
-                <Link to="/shots">Explore Shot Library</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="text-white border-white hover:bg-cricket-green/80">
-                <Link to="/my-notes">My Progress</Link>
-              </Button>
+              {user ? (
+                <>
+                  <Button asChild size="lg" className="bg-white text-cricket-green hover:bg-cricket-cream">
+                    <Link to="/shots">Explore Shot Library</Link>
+                  </Button>
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="text-white border-white hover:bg-cricket-green/80"
+                    onClick={handleSignOut}
+                  >
+                    Sign Out
+                  </Button>
+                </>
+              ) : (
+                <Button asChild size="lg" className="bg-white text-cricket-green hover:bg-cricket-cream">
+                  <Link to="/auth">Sign In</Link>
+                </Button>
+              )}
             </div>
           </div>
           <div className="absolute right-0 bottom-0 opacity-20 transform translate-x-1/4">
@@ -92,8 +113,16 @@ const Index = () => {
             Start by exploring our shot library, analyzing your technique, 
             and following the recommended drills tailored to your needs.
           </p>
-          <Button asChild size="lg" className="bg-white text-cricket-willow hover:bg-cricket-cream">
-            <Link to="/shots">Get Started Now</Link>
+          <Button 
+            asChild 
+            size="lg" 
+            className="bg-white text-cricket-willow hover:bg-cricket-cream"
+          >
+            {user ? (
+              <Link to="/shots">Get Started Now</Link>
+            ) : (
+              <Link to="/auth">Sign In to Get Started</Link>
+            )}
           </Button>
         </section>
       </div>
