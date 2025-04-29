@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState } from 'react';
 import { Shot, ShotNote, ShotAnalysis } from '@/types';
 import { shots } from '@/data/shotsData';
@@ -16,6 +17,9 @@ type ShotContextType = {
 const ShotContext = createContext<ShotContextType>({} as ShotContextType);
 
 export const useShotContext = () => useContext(ShotContext);
+
+// Hard-coded API key
+const PERPLEXITY_API_KEY = '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';
 
 export const ShotProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [selectedShot, setSelectedShot] = useState<Shot | null>(null);
@@ -55,17 +59,6 @@ export const ShotProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const analyzeShot = async (imageUrl: string, shotType: string): Promise<ShotAnalysis | null> => {
     try {
-      const apiKey = localStorage.getItem('perplexityApiKey');
-      
-      if (!apiKey) {
-        toast({
-          title: "Configuration Error",
-          description: "Please contact support to enable shot analysis.",
-          variant: "destructive"
-        });
-        return null;
-      }
-
       // Get relevant shot information for better analysis
       const shotInfo = shots.find(s => s.name.toLowerCase() === shotType.toLowerCase());
       
@@ -97,7 +90,7 @@ export const ShotProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const response = await fetch('https://api.perplexity.ai/chat/completions', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${apiKey}`,
+          'Authorization': `Bearer ${PERPLEXITY_API_KEY}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
@@ -143,6 +136,7 @@ export const ShotProvider: React.FC<{ children: React.ReactNode }> = ({ children
         toast({
           title: "Analysis Complete",
           description: "Your shot has been analyzed successfully!",
+          variant: "default",
         });
         
         return analysis;
