@@ -87,4 +87,54 @@
     50% { opacity: 0.2; }
     100% { transform: scale(1.2); opacity: 0; }
   }
+  
+  /* Enhanced interactions */
+  .hover-glow {
+    @apply transition-all duration-300;
+    box-shadow: 0 0 0 rgba(183, 28, 28, 0);
+  }
+  
+  .hover-glow:hover {
+    box-shadow: 0 0 15px rgba(183, 28, 28, 0.4);
+  }
+  
+  .cricket-btn {
+    @apply relative overflow-hidden transition-all duration-300;
+  }
+  
+  .cricket-btn::after {
+    content: '';
+    @apply absolute left-0 top-0 h-full w-0 bg-white/20;
+    transition: width 0.3s ease;
+  }
+  
+  .cricket-btn:hover::after {
+    @apply w-full;
+  }
+  
+  /* Text animations */
+  .text-reveal {
+    @apply relative overflow-hidden;
+  }
+  
+  .text-reveal span {
+    @apply block transform translate-y-full;
+    animation: textReveal 0.5s forwards;
+  }
+  
+  @keyframes textReveal {
+    to { transform: translateY(0); }
+  }
+  
+  /* Loading spinner */
+  .spinner-sweep {
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top-color: #B71C1C;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
 }

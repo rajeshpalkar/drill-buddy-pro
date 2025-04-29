@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useShotContext } from '@/contexts/ShotContext';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
@@ -17,7 +17,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ShotAnalysis } from '@/types';
 import { Upload, Camera, Image, Video, CheckCircle, AlertCircle, Loader } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ShotAnalysisPage: React.FC = () => {
   const { allShots, analyzeShot } = useShotContext();
@@ -29,6 +29,14 @@ const ShotAnalysisPage: React.FC = () => {
   const [mediaUrl, setMediaUrl] = useState<string>('');
   const [analysis, setAnalysis] = useState<ShotAnalysis | null>(null);
   const [mediaType, setMediaType] = useState<'image' | 'video'>('image');
+  
+  // Perplexity API key hardcoded as requested
+  const perplexityApiKey = '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';
+  
+  useEffect(() => {
+    // Store API key in localStorage
+    localStorage.setItem('perplexityApiKey', perplexityApiKey);
+  }, [perplexityApiKey]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -41,7 +49,7 @@ const ShotAnalysisPage: React.FC = () => {
       setMediaType('video');
     } else {
       toast({
-        title: "Invalid File Type",
+        title: "Invalid File",
         description: "Please upload an image or video file.",
         variant: "destructive"
       });
@@ -60,8 +68,8 @@ const ShotAnalysisPage: React.FC = () => {
   const handleAnalyze = async () => {
     if (!selectedShotType) {
       toast({
-        title: "Shot Type Required",
-        description: "Please select a shot type for analysis.",
+        title: "Select Shot",
+        description: "Please select a shot type.",
         variant: "destructive"
       });
       return;
@@ -69,8 +77,8 @@ const ShotAnalysisPage: React.FC = () => {
 
     if (!mediaUrl) {
       toast({
-        title: "No Media",
-        description: "Please upload an image or video to analyze.",
+        title: "Upload Media",
+        description: "Please upload an image or video.",
         variant: "destructive"
       });
       return;
@@ -123,26 +131,32 @@ const ShotAnalysisPage: React.FC = () => {
         animate="visible"
         variants={containerVariants}
       >
-        <motion.div variants={itemVariants}>
-          <h1 className="text-2xl md:text-3xl font-bold mb-2">Shot Analysis</h1>
-          <p className="text-cricket-pitch">
-            Upload an image or video of your cricket shot and get professional analysis and coaching feedback.
-          </p>
+        <motion.div variants={itemVariants} className="flex items-center gap-2">
+          <h1 className="text-2xl md:text-3xl font-bold">Analysis</h1>
         </motion.div>
 
         <Separator />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <motion.div className="md:col-span-1" variants={itemVariants}>
-            <Card className="overflow-hidden border-2 hover:border-cricket-green transition-all duration-300">
-              <CardHeader className="bg-gradient-to-r from-cricket-green to-cricket-red/80 text-white">
-                <CardTitle>Upload Media</CardTitle>
+            <Card className="overflow-hidden border-2 hover:border-cricket-green transition-all duration-300 shadow-md">
+              <CardHeader className="bg-gradient-to-r from-cricket-green to-cricket-red/80 text-white p-4">
+                <CardTitle className="flex items-center gap-2">
+                  <Upload size={20} />
+                  <span>Media</span>
+                </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4 p-6">
+              <CardContent className="space-y-4 p-4">
                 <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                   <TabsList className="w-full grid grid-cols-2 mb-4">
-                    <TabsTrigger value="upload" className="data-[state=active]:bg-cricket-green data-[state=active]:text-white">Upload</TabsTrigger>
-                    <TabsTrigger value="capture" className="data-[state=active]:bg-cricket-green data-[state=active]:text-white">Capture</TabsTrigger>
+                    <TabsTrigger value="upload" className="data-[state=active]:bg-cricket-green data-[state=active]:text-white">
+                      <Upload size={16} className="mr-1" />
+                      Upload
+                    </TabsTrigger>
+                    <TabsTrigger value="capture" className="data-[state=active]:bg-cricket-green data-[state=active]:text-white">
+                      <Camera size={16} className="mr-1" />
+                      Capture
+                    </TabsTrigger>
                   </TabsList>
                   <TabsContent value="upload" className="space-y-4 pt-2">
                     <input
@@ -158,10 +172,10 @@ const ShotAnalysisPage: React.FC = () => {
                     >
                       <Button 
                         onClick={triggerFileInput} 
-                        className="w-full h-32 flex flex-col items-center justify-center bg-cricket-cream hover:bg-white border-2 border-dashed border-cricket-green/50 hover:border-cricket-green transition-all duration-300"
+                        className="w-full h-28 flex flex-col items-center justify-center bg-cricket-cream hover:bg-white border-2 border-dashed border-cricket-green/50 hover:border-cricket-green transition-all duration-300"
                       >
-                        <Upload className="h-10 w-10 text-cricket-green mb-2" />
-                        <span className="text-sm">Click to upload image or video</span>
+                        <Upload className="h-8 w-8 text-cricket-green mb-2" />
+                        <span className="text-xs">Tap to upload</span>
                       </Button>
                     </motion.div>
                   </TabsContent>
@@ -170,19 +184,19 @@ const ShotAnalysisPage: React.FC = () => {
                       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                         <Button 
                           onClick={() => alert("Camera capture feature coming soon")}
-                          className="h-24 flex flex-col items-center justify-center bg-cricket-cream hover:bg-white"
+                          className="h-20 flex flex-col items-center justify-center bg-cricket-cream hover:bg-white"
                         >
-                          <Camera className="h-8 w-8 text-cricket-green mb-2" />
-                          <span className="text-sm">Take Photo</span>
+                          <Camera className="h-6 w-6 text-cricket-green mb-1" />
+                          <span className="text-xs">Photo</span>
                         </Button>
                       </motion.div>
                       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                         <Button 
                           onClick={() => alert("Video capture feature coming soon")}
-                          className="h-24 flex flex-col items-center justify-center bg-cricket-cream hover:bg-white"
+                          className="h-20 flex flex-col items-center justify-center bg-cricket-cream hover:bg-white"
                         >
-                          <Video className="h-8 w-8 text-cricket-green mb-2" />
-                          <span className="text-sm">Record Video</span>
+                          <Video className="h-6 w-6 text-cricket-green mb-1" />
+                          <span className="text-xs">Video</span>
                         </Button>
                       </motion.div>
                     </div>
@@ -190,10 +204,13 @@ const ShotAnalysisPage: React.FC = () => {
                 </Tabs>
 
                 <div className="space-y-2">
-                  <Label htmlFor="shot-type" className="text-sm font-medium">Shot Type</Label>
+                  <Label htmlFor="shot-type" className="text-sm font-medium flex items-center gap-1">
+                    <Play size={14} />
+                    Shot Type
+                  </Label>
                   <Select value={selectedShotType} onValueChange={setSelectedShotType}>
                     <SelectTrigger id="shot-type" className="border-cricket-green/30 focus:ring-cricket-green">
-                      <SelectValue placeholder="Select shot type" />
+                      <SelectValue placeholder="Select shot" />
                     </SelectTrigger>
                     <SelectContent>
                       {allShots.map((shot) => (
@@ -219,7 +236,12 @@ const ShotAnalysisPage: React.FC = () => {
                           <Loader className="h-4 w-4 animate-spin" />
                           Analyzing...
                         </>
-                      ) : "Analyze Shot"}
+                      ) : (
+                        <>
+                          <Search size={16} />
+                          Analyze
+                        </>
+                      )}
                     </span>
                     <span className="absolute inset-0 bg-cricket-red transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out"></span>
                   </Button>
@@ -230,10 +252,13 @@ const ShotAnalysisPage: React.FC = () => {
 
           <motion.div className="md:col-span-2" variants={itemVariants}>
             <Card className="h-full border-2 hover:shadow-lg transition-all duration-300">
-              <CardHeader className="bg-gradient-to-r from-cricket-green to-cricket-red/80 text-white">
-                <CardTitle>Preview & Analysis</CardTitle>
+              <CardHeader className="bg-gradient-to-r from-cricket-green to-cricket-red/80 text-white p-4">
+                <CardTitle className="flex items-center gap-2">
+                  <Search size={20} />
+                  <span>Results</span>
+                </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-6 p-6">
+              <CardContent className="p-4">
                 {!mediaUrl ? (
                   <motion.div 
                     className="flex flex-col items-center justify-center h-64 bg-cricket-cream/50 rounded-md"
@@ -241,8 +266,8 @@ const ShotAnalysisPage: React.FC = () => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
                   >
-                    <Image className="h-16 w-16 text-cricket-pitch mb-2" />
-                    <p className="text-cricket-pitch">Upload an image or video to preview</p>
+                    <Image className="h-12 w-12 text-cricket-pitch/50 mb-2" />
+                    <p className="text-cricket-pitch/50 text-sm">Upload to preview</p>
                   </motion.div>
                 ) : (
                   <motion.div 
@@ -268,107 +293,109 @@ const ShotAnalysisPage: React.FC = () => {
                     </div>
 
                     <div>
-                      <h3 className="text-lg font-medium mb-2 border-b-2 border-cricket-green pb-2">
-                        {selectedShotType ? selectedShotType : "Select shot type"}
-                      </h3>
-                      {analysis ? (
-                        <motion.div 
-                          className="space-y-4"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5 }}
-                        >
+                      <AnimatePresence mode="wait">
+                        {analysis ? (
                           <motion.div 
-                            initial={{ x: -20, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ delay: 0.1 }}
+                            className="space-y-4"
+                            key="analysis"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
                           >
-                            <div className="flex items-center gap-2 text-cricket-green mb-1">
-                              <CheckCircle size={16} />
-                              <h4 className="font-medium">Positives</h4>
-                            </div>
-                            <ul className="list-disc pl-5 space-y-1">
-                              {analysis.positives.map((point, idx) => (
-                                <motion.li 
-                                  key={idx} 
-                                  className="text-sm"
-                                  initial={{ opacity: 0, x: -10 }}
-                                  animate={{ opacity: 1, x: 0 }}
-                                  transition={{ delay: 0.1 + idx * 0.1 }}
-                                >
-                                  {point}
-                                </motion.li>
-                              ))}
-                            </ul>
-                          </motion.div>
-
-                          <motion.div
-                            initial={{ x: -20, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ delay: 0.3 }}
-                          >
-                            <div className="flex items-center gap-2 text-cricket-red mb-1">
-                              <AlertCircle size={16} />
-                              <h4 className="font-medium">Areas to Improve</h4>
-                            </div>
-                            <ul className="list-disc pl-5 space-y-1">
-                              {analysis.improvements.map((point, idx) => (
-                                <motion.li 
-                                  key={idx} 
-                                  className="text-sm"
-                                  initial={{ opacity: 0, x: -10 }}
-                                  animate={{ opacity: 1, x: 0 }}
-                                  transition={{ delay: 0.3 + idx * 0.1 }}
-                                >
-                                  {point}
-                                </motion.li>
-                              ))}
-                            </ul>
-                          </motion.div>
-
-                          <motion.div
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.5 }}
-                          >
-                            <h4 className="font-medium mb-1">Technical Analysis</h4>
-                            <p className="text-sm bg-cricket-cream/30 p-3 rounded-md">{analysis.technicalAnalysis}</p>
-                          </motion.div>
-
-                          <motion.div 
-                            className="flex items-center justify-between bg-cricket-cream/20 p-3 rounded-md"
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ delay: 0.6 }}
-                          >
-                            <span className="font-medium">Performance Score:</span>
-                            <span className="px-3 py-1 bg-cricket-green text-white rounded-full">
-                              {analysis.performanceScore}/10
-                            </span>
-                          </motion.div>
-                        </motion.div>
-                      ) : (
-                        <div className="flex flex-col items-center justify-center h-48 text-cricket-pitch">
-                          {isAnalyzing ? (
-                            <motion.div
-                              animate={{ 
-                                scale: [1, 1.05, 1],
-                                opacity: [0.8, 1, 0.8] 
-                              }}
-                              transition={{ 
-                                repeat: Infinity,
-                                duration: 1.5 
-                              }}
-                              className="flex flex-col items-center"
-                            >
-                              <Loader className="h-8 w-8 animate-spin text-cricket-green mb-3" />
-                              <p>Analyzing your shot...</p>
+                            <motion.div className="flex items-center justify-between">
+                              <h3 className="text-lg font-medium border-b-2 border-cricket-green pb-1 inline-block">
+                                {selectedShotType}
+                              </h3>
+                              <motion.div 
+                                className="px-3 py-1 bg-cricket-green text-white rounded-full text-sm flex items-center gap-1"
+                                initial={{ scale: 0.8 }}
+                                animate={{ scale: 1 }}
+                                transition={{ type: "spring" }}
+                              >
+                                <span>{analysis.performanceScore}/10</span>
+                              </motion.div>
                             </motion.div>
-                          ) : (
-                            <p>Click "Analyze Shot" to get feedback</p>
-                          )}
-                        </div>
-                      )}
+
+                            <motion.div 
+                              className="flex flex-col gap-3"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: 0.2 }}
+                            >
+                              <div className="space-y-2">
+                                <div className="flex items-center gap-1 text-cricket-green">
+                                  <CheckCircle size={16} />
+                                  <h4 className="font-medium text-sm">Positives</h4>
+                                </div>
+                                <ul className="grid grid-cols-1 gap-1">
+                                  {analysis.positives.map((point, idx) => (
+                                    <motion.li 
+                                      key={idx}
+                                      className="text-xs flex items-center gap-1 bg-cricket-cream/30 p-2 rounded-md"
+                                      initial={{ x: -10, opacity: 0 }}
+                                      animate={{ x: 0, opacity: 1 }}
+                                      transition={{ delay: 0.1 + idx * 0.1 }}
+                                    >
+                                      <CheckCircle size={12} className="text-cricket-green flex-shrink-0" />
+                                      <span>{point}</span>
+                                    </motion.li>
+                                  ))}
+                                </ul>
+                              </div>
+
+                              <div className="space-y-2">
+                                <div className="flex items-center gap-1 text-cricket-red">
+                                  <AlertCircle size={16} />
+                                  <h4 className="font-medium text-sm">Improve</h4>
+                                </div>
+                                <ul className="grid grid-cols-1 gap-1">
+                                  {analysis.improvements.map((point, idx) => (
+                                    <motion.li 
+                                      key={idx}
+                                      className="text-xs flex items-center gap-1 bg-cricket-cream/30 p-2 rounded-md"
+                                      initial={{ x: -10, opacity: 0 }}
+                                      animate={{ x: 0, opacity: 1 }}
+                                      transition={{ delay: 0.3 + idx * 0.1 }}
+                                    >
+                                      <AlertCircle size={12} className="text-cricket-red flex-shrink-0" />
+                                      <span>{point}</span>
+                                    </motion.li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </motion.div>
+                          </motion.div>
+                        ) : (
+                          <motion.div 
+                            key="placeholder"
+                            className="flex flex-col items-center justify-center h-64 text-cricket-pitch/70"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                          >
+                            {isAnalyzing ? (
+                              <motion.div
+                                animate={{ 
+                                  scale: [1, 1.05, 1],
+                                  opacity: [0.8, 1, 0.8] 
+                                }}
+                                transition={{ 
+                                  repeat: Infinity,
+                                  duration: 1.5 
+                                }}
+                                className="flex flex-col items-center"
+                              >
+                                <Loader className="h-8 w-8 animate-spin text-cricket-green mb-2" />
+                                <p className="text-sm">Analyzing...</p>
+                              </motion.div>
+                            ) : (
+                              <motion.div className="flex flex-col items-center">
+                                <Search className="h-8 w-8 mb-2 text-cricket-pitch/50" />
+                                <p className="text-sm">Ready to analyze</p>
+                              </motion.div>
+                            )}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   </motion.div>
                 )}
