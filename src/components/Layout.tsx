@@ -3,11 +3,11 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
-  Target, 
-  PenSquare, 
-  Play,
-  Search,
-  Upload
+  Activity, 
+  BookOpen, 
+  BarChart,
+  Zap,
+  Settings
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { motion } from 'framer-motion';
@@ -21,11 +21,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   
   const navItems = [
-    { to: "/", label: "Home", icon: <Target size={24} /> },
-    { to: "/shots", label: "Shot Library", icon: <Play size={24} /> },
-    { to: "/drills", label: "Drills", icon: <Search size={24} /> },
-    { to: "/analysis", label: "Shot Analysis", icon: <Upload size={24} /> },
-    { to: "/my-notes", label: "My Notes", icon: <PenSquare size={24} /> },
+    { to: "/", label: "Home", icon: <Zap size={24} /> },
+    { to: "/shots", label: "Shots", icon: <BarChart size={24} /> },
+    { to: "/drills", label: "Drills", icon: <Activity size={24} /> },
+    { to: "/analysis", label: "Analysis", icon: <BookOpen size={24} /> },
+    { to: "/my-notes", label: "Settings", icon: <Settings size={24} /> },
   ];
   
   const isActive = (path: string) => location.pathname === path;
@@ -41,7 +41,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       >
         <div className="container mx-auto flex justify-between items-center">
           <Link to="/" className="text-xl font-bold flex items-center gap-2 hover:scale-105 transition-transform">
-            <Target size={28} className="text-white" />
+            <motion.div 
+              className="bg-white text-cricket-green p-1.5 rounded-md"
+              whileHover={{ rotate: 10 }}
+            >
+              <Zap size={20} strokeWidth={3} />
+            </motion.div>
             <motion.span
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
@@ -98,18 +103,19 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <Link 
                   key={item.to} 
                   to={item.to} 
-                  className="flex flex-col items-center relative"
+                  className="flex flex-col items-center justify-center relative"
                 >
                   <motion.div
                     whileHover={{ y: -3 }}
                     whileTap={{ scale: 0.9 }}
+                    className="flex flex-col items-center"
                   >
                     {React.cloneElement(item.icon, { 
                       size: 20, 
                       className: `${active ? 'text-cricket-green' : 'text-gray-500'}`
                     })}
                     <span className={`text-xs mt-1 ${active ? 'font-medium text-cricket-green' : 'text-gray-500'}`}>
-                      {item.label.split(' ')[0]}
+                      {item.label}
                     </span>
                     {active && (
                       <motion.div 
