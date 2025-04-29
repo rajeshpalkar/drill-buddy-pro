@@ -15,7 +15,7 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ShotAnalysis } from '@/types';
-import { Upload, Camera, Image, Video, CheckCircle, AlertCircle, Loader } from 'lucide-react';
+import { Upload, Camera, Image, Video, CheckCircle, AlertCircle, Loader, Play, Search } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { motion, AnimatePresence } from 'framer-motion';
 
