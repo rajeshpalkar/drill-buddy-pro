@@ -10,18 +10,10 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
-} from '@/components/ui/select';
 import Layout from '@/components/Layout';
 import YoutubeEmbed from '@/components/YoutubeEmbed';
 import { useShotContext } from '@/contexts/ShotContext';
-import { Drill } from '@/types';
-import { Search, Activity, Dumbbell, Filter, Check } from 'lucide-react';
+import { Search, Activity, Dumbbell, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const DrillsPage: React.FC = () => {
@@ -31,11 +23,6 @@ const DrillsPage: React.FC = () => {
   
   // Extract all drills from all shots
   const allDrills = allShots.flatMap(shot => shot.suggestedDrills);
-  
-  // Get unique weakness tags
-  const allWeaknessTags = Array.from(new Set(
-    allDrills.flatMap(drill => drill.weaknessTag)
-  )).sort();
   
   // Filter drills based on criteria
   const filteredDrills = allDrills.filter(drill => {
@@ -78,11 +65,6 @@ const DrillsPage: React.FC = () => {
     }
   };
   
-  // Get difficulty counts
-  const getDifficultyCount = (difficulty: string) => {
-    return allDrills.filter(drill => drill.difficulty === difficulty).length;
-  };
-  
   return (
     <Layout>
       <div className="flex flex-col gap-6">
@@ -99,40 +81,20 @@ const DrillsPage: React.FC = () => {
           <Badge className="bg-cricket-green text-white px-3 py-1">{filteredDrills.length}</Badge>
         </motion.div>
         
-        {/* Search and Filter */}
+        {/* Search only - removed filter dropdown */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+          className="relative max-w-md mx-auto w-full"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
         >
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-            <Input 
-              placeholder="Search drills..."
-              className="pl-10 border-2 h-12 transition-all focus:border-cricket-green"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          
-          <Select value={filter} onValueChange={setFilter}>
-            <SelectTrigger className="h-12 border-2 transition-all hover:border-cricket-green">
-              <div className="flex items-center gap-2">
-                <Filter size={18} className="text-cricket-green" />
-                <SelectValue placeholder="Filter Drills" />
-              </div>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Drills</SelectItem>
-              <SelectItem value="Beginner">Beginner</SelectItem>
-              <SelectItem value="Intermediate">Intermediate</SelectItem>
-              <SelectItem value="Advanced">Advanced</SelectItem>
-              {allWeaknessTags.map(tag => (
-                <SelectItem key={tag} value={tag}>{tag}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+          <Input 
+            placeholder="Search drills..."
+            className="pl-10 border-2 h-12 transition-all focus:border-cricket-green"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
         </motion.div>
         
         {/* Drill Categories Quick Filter */}

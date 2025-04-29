@@ -34,8 +34,10 @@ const TabsTrigger = React.forwardRef<
     )}
     {...props}
   >
-    <span className="relative z-10">{props.children}</span>
-    <span className="absolute inset-0 bg-cricket-green scale-x-0 group-data-[state=active]:scale-x-100 transition-transform origin-left" />
+    <span className="relative z-10 transition-all">{props.children}</span>
+    <span className="absolute inset-0 bg-cricket-green scale-x-0 group-data-[state=active]:scale-x-100 transition-transform origin-left duration-300" />
+    {/* Add active indicator line that slides in from bottom */}
+    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-white scale-x-0 group-data-[state=active]:scale-x-100 transition-transform origin-center duration-300 delay-150" />
   </TabsPrimitive.Trigger>
 ))
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName

@@ -7,7 +7,7 @@ import {
   BookOpen, 
   BarChart,
   Zap,
-  Settings
+  PenSquare
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { motion } from 'framer-motion';
@@ -21,18 +21,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   
   const navItems = [
-    { to: "/", label: "Home", icon: <Zap size={24} /> },
-    { to: "/shots", label: "Shots", icon: <BarChart size={24} /> },
-    { to: "/drills", label: "Drills", icon: <Activity size={24} /> },
-    { to: "/analysis", label: "Analysis", icon: <BookOpen size={24} /> },
-    { to: "/my-notes", label: "Settings", icon: <Settings size={24} /> },
+    { to: "/", label: "", icon: <Zap size={24} /> },
+    { to: "/shots", label: "", icon: <BarChart size={24} /> },
+    { to: "/drills", label: "", icon: <Activity size={24} /> },
+    { to: "/analysis", label: "", icon: <BookOpen size={24} /> },
+    { to: "/my-notes", label: "", icon: <PenSquare size={24} /> },
   ];
   
   const isActive = (path: string) => location.pathname === path;
   
   return (
     <div className="flex flex-col min-h-screen bg-cricket-cream">
-      {/* Header */}
+      {/* Header - More minimal */}
       <motion.header 
         className="bg-cricket-green text-white py-3 px-4 shadow-md"
         initial={{ y: -50, opacity: 0 }}
@@ -45,7 +45,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               className="bg-white text-cricket-green p-1.5 rounded-md"
               whileHover={{ rotate: 10 }}
             >
-              <Zap size={20} strokeWidth={3} />
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                <path d="M9 8.5h6M8 12h8M9 15.5h6" />
+              </svg>
             </motion.div>
             <motion.span
               initial={{ opacity: 0, x: -10 }}
@@ -70,7 +73,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     ? 'bg-white/20 hover:bg-white/30' 
                     : 'hover:bg-cricket-green/80'} transition-all`}
                 >
-                  <Link to={item.to}>{item.label}</Link>
+                  <Link to={item.to} className="flex items-center gap-2">
+                    {React.cloneElement(item.icon, { size: 18 })}
+                    <span>
+                      {item.to === "/" && "Home"}
+                      {item.to === "/shots" && "Shots"}
+                      {item.to === "/drills" && "Drills"}
+                      {item.to === "/analysis" && "Analysis"}
+                      {item.to === "/my-notes" && "Notes"}
+                    </span>
+                  </Link>
                 </Button>
               </motion.div>
             ))}
@@ -88,7 +100,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </motion.main>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Now more minimal, only icons */}
       {isMobile && (
         <motion.nav 
           className="bg-white border-t border-gray-200 fixed bottom-0 w-full px-4 py-3 shadow-lg z-50"
@@ -111,11 +123,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     className="flex flex-col items-center"
                   >
                     {React.cloneElement(item.icon, { 
-                      size: 20, 
+                      size: 22, 
                       className: `${active ? 'text-cricket-green' : 'text-gray-500'}`
                     })}
                     <span className={`text-xs mt-1 ${active ? 'font-medium text-cricket-green' : 'text-gray-500'}`}>
-                      {item.label}
+                      {item.to === "/" && "Home"}
+                      {item.to === "/shots" && "Shots"}
+                      {item.to === "/drills" && "Drills"}
+                      {item.to === "/analysis" && "Analysis"}
+                      {item.to === "/my-notes" && "Notes"}
                     </span>
                     {active && (
                       <motion.div 
