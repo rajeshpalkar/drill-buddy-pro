@@ -68,7 +68,7 @@
   
   /* Card enhancements */
   .card-sport {
-    @apply rounded-lg overflow-hidden border-2 transition-all duration-300 hover:shadow-md;
+    @apply rounded-lg overflow-hidden border-none shadow-sm transition-all duration-300 hover:shadow-md;
   }
   
   .btn-pulse {
@@ -99,7 +99,7 @@
   }
   
   .cricket-btn {
-    @apply relative overflow-hidden transition-all duration-300;
+    @apply relative overflow-hidden transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all;
   }
   
   .cricket-btn::after {
@@ -110,6 +110,68 @@
   
   .cricket-btn:hover::after {
     @apply w-full;
+  }
+  
+  /* Athletic animations */
+  .bounce-subtle {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+  
+  @keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  .pulse-gentle {
+    animation: pulse-gentle 2s infinite;
+  }
+  
+  @keyframes pulse-gentle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+  
+  .slide-in-right {
+    animation: slide-in-right 0.4s ease-out;
+  }
+  
+  @keyframes slide-in-right {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0); }
+  }
+  
+  .scale-in {
+    animation: scale-in 0.3s ease-out;
+  }
+  
+  @keyframes scale-in {
+    0% { transform: scale(0.95); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  /* Dynamic sports-inspired animations */
+  .swing {
+    transform-origin: top center;
+    animation: swing 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes swing {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(15deg); }
+    40% { transform: rotate(-10deg); }
+    60% { transform: rotate(5deg); }
+    80% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+  }
+  
+  .sprint {
+    animation: sprint 1s linear infinite;
+  }
+  
+  @keyframes sprint {
+    0% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    100% { transform: translateX(-5px); }
   }
   
   /* Text animations */
@@ -136,5 +198,23 @@
   
   @keyframes spin {
     to { transform: rotate(360deg); }
+  }
+  
+  /* Modern card designs */
+  .card-athletic {
+    @apply bg-white rounded-lg overflow-hidden border-0 shadow-sm transition-all duration-300;
+  }
+  
+  .card-athletic:hover {
+    @apply shadow-md transform translate-y-[-2px];
+  }
+  
+  .card-athletic::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-1 bg-cricket-green transform scale-x-0 origin-left transition-transform duration-300;
+  }
+  
+  .card-athletic:hover::after {
+    @apply transform scale-x-100;
   }
 }

@@ -1,11 +1,13 @@
 
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Shot } from '@/types';
 import { useShotContext } from '@/contexts/ShotContext';
 import { useNavigate } from 'react-router-dom';
+import { Play } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface ShotCardProps {
   shot: Shot;
@@ -21,40 +23,43 @@ const ShotCard: React.FC<ShotCardProps> = ({ shot }) => {
   };
   
   return (
-    <Card className="h-full hover:shadow-md transition-shadow duration-300 border-l-4 border-l-cricket-green">
-      <CardHeader className="pb-2">
-        <div className="flex justify-between items-start">
-          <CardTitle className="text-lg font-medium text-cricket-green">{shot.name}</CardTitle>
+    <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300 border-0 bg-white">
+      <div className="p-5">
+        <div className="flex justify-between items-start mb-3">
+          <h3 className="text-xl font-bold text-cricket-green">{shot.name}</h3>
           <div className="flex gap-1">
-            <Badge variant="outline" className="bg-cricket-cream text-cricket-green">
+            <Badge variant="outline" className="bg-cricket-cream text-cricket-green text-xs font-semibold">
               {shot.category}
             </Badge>
-            <Badge variant="outline" className="bg-cricket-willow text-white">
-              {shot.type}
-            </Badge>
           </div>
         </div>
-        <CardDescription className="text-sm line-clamp-2">{shot.description}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="flex flex-col gap-2">
-          <div>
-            <h4 className="text-xs font-semibold text-cricket-pitch mb-1">KEY POINTERS</h4>
-            <ul className="text-xs list-disc pl-4">
-              {shot.keyPointers.slice(0, 2).map((pointer, idx) => (
-                <li key={idx}>{pointer}</li>
-              ))}
-              {shot.keyPointers.length > 2 && <li>...</li>}
-            </ul>
-          </div>
-          <Button 
-            onClick={handleSelect}
-            className="mt-2 w-full bg-cricket-green hover:bg-cricket-green/90 text-white"
-          >
-            View Details
-          </Button>
+        
+        <div className="flex justify-between items-end mt-4">
+          <Badge variant="secondary" className="bg-cricket-willow text-white">
+            {shot.type}
+          </Badge>
+          
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button 
+              onClick={handleSelect}
+              className="bg-cricket-green hover:bg-cricket-green/90 text-white rounded-full p-2 h-10 w-10 flex items-center justify-center"
+              aria-label="View shot details"
+            >
+              <Play size={20} className="ml-1" />
+            </Button>
+          </motion.div>
         </div>
-      </CardContent>
+      </div>
+      
+      {/* Animated bottom bar that appears on hover */}
+      <div className="h-1 w-full bg-gray-100 relative overflow-hidden">
+        <motion.div 
+          className="absolute h-full bg-cricket-green"
+          initial={{ width: "0%" }}
+          whileHover={{ width: "100%" }}
+          transition={{ duration: 0.3 }}
+        />
+      </div>
     </Card>
   );
 };
