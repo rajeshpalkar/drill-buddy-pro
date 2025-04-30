@@ -70,7 +70,7 @@ const Index = () => {
           </motion.div>
         </motion.section>
 
-        {/* Features Section - More minimalist */}
+        {/* Features Section - Improved alignment */}
         <section className="py-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <motion.div 
@@ -79,7 +79,7 @@ const Index = () => {
               transition={{ delay: 0.1, duration: 0.5 }}
             >
               <Card className="border-0 shadow-sm hover:shadow-md transition-all h-full">
-                <CardHeader>
+                <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2">
                     <BookOpen className="text-cricket-green" size={24} />
                     <span>Shot Library</span>
@@ -100,7 +100,7 @@ const Index = () => {
               transition={{ delay: 0.2, duration: 0.5 }}
             >
               <Card className="border-0 shadow-sm hover:shadow-md transition-all h-full">
-                <CardHeader>
+                <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2">
                     <Activity className="text-cricket-green" size={24} />
                     <span>Practice Drills</span>
@@ -121,7 +121,7 @@ const Index = () => {
               transition={{ delay: 0.3, duration: 0.5 }}
             >
               <Card className="border-0 shadow-sm hover:shadow-md transition-all h-full">
-                <CardHeader>
+                <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2">
                     <PenSquare className="text-cricket-green" size={24} />
                     <span>Track Progress</span>

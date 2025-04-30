@@ -1,7 +1,7 @@
 
 import * as React from "react"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
-
+import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 const Tabs = TabsPrimitive.Root
@@ -34,10 +34,20 @@ const TabsTrigger = React.forwardRef<
     )}
     {...props}
   >
-    <span className="relative z-10 transition-all">{props.children}</span>
-    <span className="absolute inset-0 bg-cricket-green scale-x-0 group-data-[state=active]:scale-x-100 transition-transform origin-left duration-300" />
-    {/* Add active indicator line that slides in from bottom */}
-    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-white scale-x-0 group-data-[state=active]:scale-x-100 transition-transform origin-center duration-300 delay-150" />
+    <motion.span 
+      className="relative z-10 transition-all"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+    >{props.children}</motion.span>
+    <motion.span 
+      className="absolute inset-0 bg-cricket-green scale-x-0 group-data-[state=active]:scale-x-100 origin-left" 
+      transition={{ duration: 0.25, ease: "easeInOut" }} 
+    />
+    {/* Smoother underline animation */}
+    <motion.span 
+      className="absolute bottom-0 left-0 right-0 h-0.5 bg-white scale-x-0 group-data-[state=active]:scale-x-100 origin-center" 
+      transition={{ duration: 0.25, ease: "easeInOut", delay: 0.1 }} 
+    />
   </TabsPrimitive.Trigger>
 ))
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName

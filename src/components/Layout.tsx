@@ -3,10 +3,10 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
-  Activity, 
+  ArrowRight, 
   BookOpen, 
   BarChart,
-  Zap,
+  CircleArrowRight,
   PenSquare
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -21,9 +21,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   
   const navItems = [
-    { to: "/", label: "", icon: <Zap size={24} /> },
+    { to: "/", label: "", icon: <CircleArrowRight size={24} /> },
     { to: "/shots", label: "", icon: <BarChart size={24} /> },
-    { to: "/drills", label: "", icon: <Activity size={24} /> },
+    { to: "/drills", label: "", icon: <ArrowRight size={24} className="transform rotate-45" /> },
     { to: "/analysis", label: "", icon: <BookOpen size={24} /> },
     { to: "/my-notes", label: "", icon: <PenSquare size={24} /> },
   ];
@@ -45,17 +45,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               className="bg-white text-cricket-green p-1.5 rounded-md"
               whileHover={{ rotate: 10 }}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-                <path d="M9 8.5h6M8 12h8M9 15.5h6" />
-              </svg>
+              <CircleArrowRight size={20} />
             </motion.div>
             <motion.span
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
             >
-              DrillBuddy
+              CrickProgress
             </motion.span>
           </Link>
           <div className="hidden md:flex items-center gap-4">
@@ -100,7 +97,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </motion.main>
 
-      {/* Mobile Navigation - Now more minimal, only icons */}
+      {/* Mobile Navigation - Updated icons */}
       {isMobile && (
         <motion.nav 
           className="bg-white border-t border-gray-200 fixed bottom-0 w-full px-4 py-3 shadow-lg z-50"
