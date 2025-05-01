@@ -3,11 +3,11 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
-  ArrowRight, 
+  BarChart3, 
   BookOpen, 
-  BarChart,
   CircleArrowRight,
-  PenSquare
+  PenSquare,
+  Trophy
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { motion } from 'framer-motion';
@@ -22,8 +22,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   
   const navItems = [
     { to: "/", label: "", icon: <CircleArrowRight size={24} /> },
-    { to: "/shots", label: "", icon: <BarChart size={24} /> },
-    { to: "/drills", label: "", icon: <ArrowRight size={24} className="transform rotate-45" /> },
+    { to: "/shots", label: "", icon: <Trophy size={24} /> },
+    { to: "/drills", label: "", icon: <BarChart3 size={24} /> },
     { to: "/analysis", label: "", icon: <BookOpen size={24} /> },
     { to: "/my-notes", label: "", icon: <PenSquare size={24} /> },
   ];

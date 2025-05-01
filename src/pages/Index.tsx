@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Layout from '@/components/Layout';
-import { BookOpen, PenSquare, Activity } from 'lucide-react';
+import { BookOpen, PenSquare, Trophy } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { motion } from 'framer-motion';
@@ -87,7 +87,7 @@ const Index = () => {
                 </CardHeader>
                 <CardContent className="flex flex-col h-full">
                   <p className="text-sm text-muted-foreground mb-4">Access cricket shots with key technical pointers.</p>
-                  <Button asChild className="w-full mt-auto bg-cricket-green hover:bg-cricket-green/90">
+                  <Button asChild className="w-full mt-auto bg-cricket-green hover:bg-cricket-green/90 text-white">
                     <Link to="/shots">Browse</Link>
                   </Button>
                 </CardContent>
@@ -102,13 +102,13 @@ const Index = () => {
               <Card className="border-0 shadow-sm hover:shadow-md transition-all h-full">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2">
-                    <Activity className="text-cricket-green" size={24} />
+                    <Trophy className="text-cricket-green" size={24} />
                     <span>Practice Drills</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col h-full">
                   <p className="text-sm text-muted-foreground mb-4">Find drills to improve your technique.</p>
-                  <Button asChild className="w-full mt-auto bg-cricket-green hover:bg-cricket-green/90">
+                  <Button asChild className="w-full mt-auto bg-cricket-green hover:bg-cricket-green/90 text-white">
                     <Link to="/drills">Train</Link>
                   </Button>
                 </CardContent>
@@ -129,7 +129,7 @@ const Index = () => {
                 </CardHeader>
                 <CardContent className="flex flex-col h-full">
                   <p className="text-sm text-muted-foreground mb-4">Record your progress and save notes.</p>
-                  <Button asChild className="w-full mt-auto bg-cricket-green hover:bg-cricket-green/90">
+                  <Button asChild className="w-full mt-auto bg-cricket-green hover:bg-cricket-green/90 text-white">
                     <Link to="/my-notes">Notes</Link>
                   </Button>
                 </CardContent>
