@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -21,8 +20,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   
   const navItems = [
     { to: "/", label: "Shots", icon: <Trophy size={24} /> },
-    { to: "/field", label: "Field", icon: <Users size={24} /> },
-    { to: "/train", label: "Train", icon: <Dumbbell size={24} /> },
+    { to: "/fielding-positions", label: "Field", icon: <Users size={24} /> },
+    { to: "/fitness-training", label: "Train", icon: <Dumbbell size={24} /> },
   ];
   
   const isActive = (path: string) => location.pathname === path;

@@ -22,10 +22,15 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<ShotsPage />} />
+            <Route path="/cricket-shots" element={<Navigate to="/" replace />} />
+            <Route path="/shot-technique/:shotId" element={<ShotDetailPage />} />
+            <Route path="/fitness-training" element={<TrainPage />} />
+            <Route path="/fielding-positions" element={<FieldingPositionsPage />} />
+            {/* Legacy redirects */}
             <Route path="/shots" element={<Navigate to="/" replace />} />
-            <Route path="/shot/:shotId" element={<ShotDetailPage />} />
-            <Route path="/train" element={<TrainPage />} />
-            <Route path="/field" element={<FieldingPositionsPage />} />
+            <Route path="/shot/:shotId" element={<Navigate to="/shot-technique/:shotId" replace />} />
+            <Route path="/train" element={<Navigate to="/fitness-training" replace />} />
+            <Route path="/field" element={<Navigate to="/fielding-positions" replace />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
