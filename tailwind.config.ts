@@ -24,11 +24,11 @@ export default {
 			},
 			colors: {
 				cricket: {
-					green: '#1EAEDB', // Changed to sky blue
-					cream: '#F0F9FF', // Light sky blue tint
-					willow: '#33C3F0', // Lighter sky blue
+					green: '#DC2626', // Red color
+					cream: '#FEF2F2', // Light red tint
+					willow: '#EF4444', // Lighter red
 					pitch: '#78909C',
-					red: '#33C3F0' // Changed to sky blue
+					red: '#B91C1C' // Darker red
 				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',

@@ -3,11 +3,11 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
-  BarChart3, 
-  BookOpen, 
-  CircleArrowRight,
-  PenSquare,
-  Trophy
+  Activity, 
+  Home, 
+  Target,
+  Trophy,
+  Users
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { motion } from 'framer-motion';
@@ -21,18 +21,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   
   const navItems = [
-    { to: "/", label: "", icon: <CircleArrowRight size={24} /> },
+    { to: "/", label: "", icon: <Home size={24} /> },
     { to: "/shots", label: "", icon: <Trophy size={24} /> },
-    { to: "/drills", label: "", icon: <BarChart3 size={24} /> },
-    { to: "/analysis", label: "", icon: <BookOpen size={24} /> },
-    { to: "/my-notes", label: "", icon: <PenSquare size={24} /> },
+    { to: "/drills", label: "", icon: <Activity size={24} /> },
+    { to: "/fielding", label: "", icon: <Users size={24} /> },
   ];
   
   const isActive = (path: string) => location.pathname === path;
   
   return (
     <div className="flex flex-col min-h-screen bg-cricket-cream">
-      {/* Header - More minimal */}
+      {/* Header */}
       <motion.header 
         className="bg-cricket-green text-white py-3 px-4 shadow-md"
         initial={{ y: -50, opacity: 0 }}
@@ -45,14 +44,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               className="bg-white text-cricket-green p-1.5 rounded-md"
               whileHover={{ rotate: 10 }}
             >
-              <CircleArrowRight size={20} />
+              <Target size={20} />
             </motion.div>
             <motion.span
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
             >
-              CrickProgress
+              Drill Buddy
             </motion.span>
           </Link>
           <div className="hidden md:flex items-center gap-4">
@@ -76,8 +75,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                       {item.to === "/" && "Home"}
                       {item.to === "/shots" && "Shots"}
                       {item.to === "/drills" && "Drills"}
-                      {item.to === "/analysis" && "Analysis"}
-                      {item.to === "/my-notes" && "Notes"}
+                      {item.to === "/fielding" && "Fielding"}
                     </span>
                   </Link>
                 </Button>
@@ -97,7 +95,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </motion.main>
 
-      {/* Mobile Navigation - Updated icons */}
+      {/* Mobile Navigation */}
       {isMobile && (
         <motion.nav 
           className="bg-white border-t border-gray-200 fixed bottom-0 w-full px-4 py-3 shadow-lg z-50"
@@ -127,8 +125,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                       {item.to === "/" && "Home"}
                       {item.to === "/shots" && "Shots"}
                       {item.to === "/drills" && "Drills"}
-                      {item.to === "/analysis" && "Analysis"}
-                      {item.to === "/my-notes" && "Notes"}
+                      {item.to === "/fielding" && "Fielding"}
                     </span>
                     {active && (
                       <motion.div 

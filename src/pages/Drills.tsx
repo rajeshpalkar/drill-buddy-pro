@@ -11,7 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import Layout from '@/components/Layout';
 import YoutubeEmbed from '@/components/YoutubeEmbed';
 import { useShotContext } from '@/contexts/ShotContext';
-import { BarChart3, Trophy } from 'lucide-react';
+import { Activity, Trophy } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const DrillsPage: React.FC = () => {
@@ -58,13 +58,13 @@ const DrillsPage: React.FC = () => {
           className="flex items-center justify-between"
         >
           <div className="flex items-center gap-2">
-            <Trophy size={28} className="text-cricket-green" />
+            <Activity size={28} className="text-cricket-green" />
             <h1 className="text-2xl font-bold text-cricket-green">Drills</h1>
           </div>
           <Badge className="bg-cricket-green text-white px-3 py-1">{allDrills.length}</Badge>
         </motion.div>
         
-        {/* Drills List - No filters */}
+        {/* Drills List */}
         <motion.div 
           className="grid grid-cols-1 gap-6"
           variants={containerVariants}
@@ -80,7 +80,7 @@ const DrillsPage: React.FC = () => {
                     <CardHeader className="pb-3">
                       <div className="flex flex-wrap justify-between items-start gap-2">
                         <div className="flex items-center gap-2">
-                          <BarChart3 size={18} className="text-cricket-green" />
+                          <Trophy size={18} className="text-cricket-green" />
                           <CardTitle className="text-lg text-cricket-green">{drill.name}</CardTitle>
                         </div>
                         <Badge className="bg-cricket-willow text-white">{drill.difficulty}</Badge>
@@ -124,9 +124,9 @@ const DrillsPage: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              <BarChart3 size={64} className="text-gray-300 mb-4 mx-auto" />
+              <Activity size={64} className="text-gray-300 mb-4 mx-auto" />
               <h3 className="text-lg font-medium mb-2">No drills found</h3>
-              <p className="text-cricket-pitch">Try adjusting your search criteria.</p>
+              <p className="text-cricket-pitch">Check back for new training drills.</p>
             </motion.div>
           )}
         </motion.div>
