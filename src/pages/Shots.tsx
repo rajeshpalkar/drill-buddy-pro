@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import Layout from '@/components/Layout';
 import ShotCard from '@/components/ShotCard';
 import { useShotContext } from '@/contexts/ShotContext';
-import { Search } from 'lucide-react';
+import { Search, Trophy } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 
@@ -36,18 +36,21 @@ const ShotsPage: React.FC = () => {
   return (
     <Layout>
       <div className="flex flex-col gap-6">
-        {/* Minimal Header */}
+        {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className="flex items-center justify-between"
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-cricket-green">Shots</h1>
+          <div className="flex items-center gap-2">
+            <Trophy size={28} className="text-cricket-green" />
+            <h1 className="text-2xl font-bold text-cricket-green">Cricket Shots</h1>
+          </div>
           <Badge className="bg-cricket-green text-white px-3 py-1">{shots.length}</Badge>
         </motion.div>
         
-        {/* Search only - removed dropdowns */}
+        {/* Search */}
         <motion.div 
           className="relative max-w-md mx-auto w-full"
           initial={{ opacity: 0, y: 20 }}
@@ -57,15 +60,15 @@ const ShotsPage: React.FC = () => {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
           <Input 
             placeholder="Search shots..."
-            className="pl-10 border-2 h-12 transition-all focus:border-cricket-green"
+            className="pl-10 border-2 h-12 transition-all focus:border-cricket-green rounded-lg"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </motion.div>
         
-        {/* Shot Cards with animations */}
+        {/* Shot Cards */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -84,7 +87,8 @@ const ShotsPage: React.FC = () => {
               transition={{ delay: 0.3 }}
             >
               <Search size={64} className="text-gray-300 mb-4" />
-              <h3 className="text-xl font-medium">No shots found</h3>
+              <h3 className="text-xl font-medium text-gray-600">No shots found</h3>
+              <p className="text-gray-500 mt-2">Try a different search term</p>
             </motion.div>
           )}
         </motion.div>

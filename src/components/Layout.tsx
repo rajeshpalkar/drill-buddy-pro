@@ -3,10 +3,9 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
-  Activity, 
-  Home, 
-  Target,
+  Dumbbell, 
   Trophy,
+  Target,
   Users
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -21,10 +20,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   
   const navItems = [
-    { to: "/", label: "", icon: <Home size={24} /> },
-    { to: "/shots", label: "", icon: <Trophy size={24} /> },
-    { to: "/drills", label: "", icon: <Activity size={24} /> },
-    { to: "/fielding", label: "", icon: <Users size={24} /> },
+    { to: "/", label: "Shots", icon: <Trophy size={24} /> },
+    { to: "/field", label: "Field", icon: <Users size={24} /> },
+    { to: "/train", label: "Train", icon: <Dumbbell size={24} /> },
   ];
   
   const isActive = (path: string) => location.pathname === path;
@@ -38,7 +36,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <div className="container mx-auto flex justify-between items-center">
+        <div className="container mx-auto flex justify-center items-center">
           <Link to="/" className="text-xl font-bold flex items-center gap-2 hover:scale-105 transition-transform">
             <motion.div 
               className="bg-white text-cricket-green p-1.5 rounded-md"
@@ -54,40 +52,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               Drill Buddy
             </motion.span>
           </Link>
-          <div className="hidden md:flex items-center gap-4">
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.to}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
-              >
-                <Button 
-                  asChild 
-                  variant={isActive(item.to) ? "default" : "ghost"} 
-                  className={`text-white hover:text-white ${isActive(item.to) 
-                    ? 'bg-white/20 hover:bg-white/30' 
-                    : 'hover:bg-cricket-green/80'} transition-all`}
-                >
-                  <Link to={item.to} className="flex items-center gap-2">
-                    {React.cloneElement(item.icon, { size: 18 })}
-                    <span>
-                      {item.to === "/" && "Home"}
-                      {item.to === "/shots" && "Shots"}
-                      {item.to === "/drills" && "Drills"}
-                      {item.to === "/fielding" && "Fielding"}
-                    </span>
-                  </Link>
-                </Button>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </motion.header>
 
       {/* Main Content */}
       <motion.main 
-        className="flex-1 container mx-auto p-4 md:p-6 pb-20 md:pb-6"
+        className="flex-1 container mx-auto p-4 pb-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.3 }}
@@ -96,50 +66,45 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </motion.main>
 
       {/* Mobile Navigation */}
-      {isMobile && (
-        <motion.nav 
-          className="bg-white border-t border-gray-200 fixed bottom-0 w-full px-4 py-3 shadow-lg z-50"
-          initial={{ y: 100 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
-        >
-          <div className="flex justify-around">
-            {navItems.map((item, index) => {
-              const active = isActive(item.to);
-              return (
-                <Link 
-                  key={item.to} 
-                  to={item.to} 
-                  className="flex flex-col items-center justify-center relative"
+      <motion.nav 
+        className="bg-white border-t border-gray-200 fixed bottom-0 w-full px-4 py-3 shadow-lg z-50"
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+      >
+        <div className="flex justify-around">
+          {navItems.map((item, index) => {
+            const active = isActive(item.to);
+            return (
+              <Link 
+                key={item.to} 
+                to={item.to} 
+                className="flex flex-col items-center justify-center relative"
+              >
+                <motion.div
+                  whileHover={{ y: -3 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="flex flex-col items-center"
                 >
-                  <motion.div
-                    whileHover={{ y: -3 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="flex flex-col items-center"
-                  >
-                    {React.cloneElement(item.icon, { 
-                      size: 22, 
-                      className: `${active ? 'text-cricket-green' : 'text-gray-500'}`
-                    })}
-                    <span className={`text-xs mt-1 ${active ? 'font-medium text-cricket-green' : 'text-gray-500'}`}>
-                      {item.to === "/" && "Home"}
-                      {item.to === "/shots" && "Shots"}
-                      {item.to === "/drills" && "Drills"}
-                      {item.to === "/fielding" && "Fielding"}
-                    </span>
-                    {active && (
-                      <motion.div 
-                        className="absolute -bottom-3 left-0 right-0 h-0.5 bg-cricket-green"
-                        layoutId="underline"
-                      />
-                    )}
-                  </motion.div>
-                </Link>
-              );
-            })}
-          </div>
-        </motion.nav>
-      )}
+                  {React.cloneElement(item.icon, { 
+                    size: 22, 
+                    className: `${active ? 'text-cricket-green' : 'text-gray-500'}`
+                  })}
+                  <span className={`text-xs mt-1 ${active ? 'font-medium text-cricket-green' : 'text-gray-500'}`}>
+                    {item.label}
+                  </span>
+                  {active && (
+                    <motion.div 
+                      className="absolute -bottom-3 left-0 right-0 h-0.5 bg-cricket-green"
+                      layoutId="underline"
+                    />
+                  )}
+                </motion.div>
+              </Link>
+            );
+          })}
+        </div>
+      </motion.nav>
     </div>
   );
 };
