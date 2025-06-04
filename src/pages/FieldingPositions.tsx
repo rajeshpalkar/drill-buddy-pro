@@ -3,7 +3,6 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Layout from '@/components/Layout';
-import InteractiveField from '@/components/InteractiveField';
 import { Users, Target, Play } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -62,25 +61,31 @@ const FieldingPositionsPage: React.FC = () => {
         >
           <div className="flex items-center gap-2">
             <Users size={28} className="text-cricket-green" />
-            <h1 className="text-2xl font-bold text-cricket-green">Interactive Field Setup</h1>
+            <h1 className="text-2xl font-bold text-cricket-green">Fielding Positions</h1>
           </div>
           <Badge className="bg-cricket-green text-white flex items-center gap-1">
             <Play size={14} />
-            Live Setup
+            Guide
           </Badge>
         </motion.div>
 
-        {/* Interactive Field */}
+        {/* Static Field Image */}
         <motion.div variants={itemVariants}>
           <Card className="overflow-hidden">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Target size={20} className="text-cricket-green" />
-                Interactive Cricket Field
+                Cricket Field Positions
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <InteractiveField />
+              <div className="w-full flex justify-center">
+                <img 
+                  src="/lovable-uploads/1444b488-93db-45c9-8678-a25d62efbf85.png" 
+                  alt="Cricket fielding positions diagram" 
+                  className="max-w-full h-auto rounded-lg shadow-md"
+                />
+              </div>
             </CardContent>
           </Card>
         </motion.div>
