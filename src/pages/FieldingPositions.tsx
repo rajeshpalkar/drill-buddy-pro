@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Layout from '@/components/Layout';
-import { Users, Target, Play } from 'lucide-react';
+import { user, Target, Play } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const FieldingPositionsPage: React.FC = () => {
@@ -60,7 +60,7 @@ const FieldingPositionsPage: React.FC = () => {
           variants={itemVariants}
         >
           <div className="flex items-center gap-2">
-            <Users size={28} className="text-cricket-green" />
+            <user size={28} className="text-cricket-green" />
             <h1 className="text-2xl font-bold text-cricket-green">Fielding Positions</h1>
           </div>
           <Badge className="bg-cricket-green text-white flex items-center gap-1">
@@ -71,19 +71,19 @@ const FieldingPositionsPage: React.FC = () => {
 
         {/* Static Field Image */}
         <motion.div variants={itemVariants}>
-          <Card className="overflow-hidden">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Target size={20} className="text-cricket-green" />
+          <Card className="overflow-hidden border-2 border-cricket-green/20 shadow-lg">
+            <CardHeader className="bg-gradient-to-r from-cricket-green to-cricket-green/80 text-white">
+              <CardTitle className="flex items-center gap-2 text-white">
+                <Target size={20} />
                 Cricket Field Positions
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="w-full flex justify-center">
+            <CardContent className="p-6 bg-white">
+              <div className="w-full flex justify-center bg-cricket-cream/30 rounded-xl p-4">
                 <img 
                   src="/lovable-uploads/1444b488-93db-45c9-8678-a25d62efbf85.png" 
                   alt="Cricket fielding positions diagram" 
-                  className="max-w-full h-auto rounded-lg shadow-md"
+                  className="max-w-full h-auto rounded-lg shadow-md border-2 border-cricket-green/10"
                 />
               </div>
             </CardContent>
@@ -94,7 +94,7 @@ const FieldingPositionsPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {fieldingStrategies.map((strategy, index) => (
             <motion.div key={index} variants={itemVariants}>
-              <Card className={`h-full ${strategy.color}`}>
+              <Card className={`h-full ${strategy.color} border-2 hover:shadow-lg transition-all duration-300`}>
                 <CardHeader>
                   <CardTitle className="text-cricket-green text-lg">
                     {strategy.title}
@@ -104,7 +104,7 @@ const FieldingPositionsPage: React.FC = () => {
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
                     {strategy.positions.map((position, idx) => (
-                      <Badge key={idx} variant="outline" className="text-xs">
+                      <Badge key={idx} variant="outline" className="text-xs border-cricket-green/30">
                         {position}
                       </Badge>
                     ))}

@@ -4,9 +4,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
   Dumbbell, 
-  Trophy,
+  bat,
   Target,
-  Users,
+  user,
   Camera
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -21,8 +21,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   
   const navItems = [
-    { to: "/", label: "Shots", icon: <Trophy size={24} /> },
-    { to: "/fielding-positions", label: "Field", icon: <Users size={24} /> },
+    { to: "/", label: "Shots", icon: <bat size={24} /> },
+    { to: "/fielding-positions", label: "Field", icon: <user size={24} /> },
     { to: "/fitness-training", label: "Train", icon: <Dumbbell size={24} /> },
     { to: "/shot-analysis", label: "Analyze", icon: <Camera size={24} /> },
   ];
@@ -51,7 +51,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
             >
-              Cricket Coach
+              DrillBuddy.AI
             </motion.span>
           </Link>
         </div>

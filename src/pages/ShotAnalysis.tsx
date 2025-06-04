@@ -13,9 +13,8 @@ import {
 } from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ShotAnalysis } from '@/types';
-import { Upload, Camera, Image, Video, CheckCircle, AlertCircle, Loader, Play, Search } from 'lucide-react';
+import { Upload, Image, CheckCircle, AlertCircle, Loader, Play, Search } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -23,7 +22,6 @@ const ShotAnalysisPage: React.FC = () => {
   const { allShots, analyzeShot } = useShotContext();
   const { toast } = useToast();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [activeTab, setActiveTab] = useState<string>('upload');
   const [selectedShotType, setSelectedShotType] = useState<string>('');
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [mediaUrl, setMediaUrl] = useState<string>('');
@@ -147,61 +145,27 @@ const ShotAnalysisPage: React.FC = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 p-4">
-                <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-                  <TabsList className="w-full grid grid-cols-2 mb-4">
-                    <TabsTrigger value="upload" className="data-[state=active]:bg-cricket-green data-[state=active]:text-white">
-                      <Upload size={16} className="mr-1" />
-                      Upload
-                    </TabsTrigger>
-                    <TabsTrigger value="capture" className="data-[state=active]:bg-cricket-green data-[state=active]:text-white">
-                      <Camera size={16} className="mr-1" />
-                      Capture
-                    </TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="upload" className="space-y-4 pt-2">
-                    <input
-                      type="file"
-                      ref={fileInputRef}
-                      className="hidden"
-                      accept="image/*,video/*"
-                      onChange={handleFileChange}
-                    />
-                    <motion.div 
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                <div className="space-y-4">
+                  <input
+                    type="file"
+                    ref={fileInputRef}
+                    className="hidden"
+                    accept="image/*,video/*"
+                    onChange={handleFileChange}
+                  />
+                  <motion.div 
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Button 
+                      onClick={triggerFileInput} 
+                      className="w-full h-28 flex flex-col items-center justify-center bg-cricket-cream hover:bg-white border-2 border-dashed border-cricket-green/50 hover:border-cricket-green transition-all duration-300"
                     >
-                      <Button 
-                        onClick={triggerFileInput} 
-                        className="w-full h-28 flex flex-col items-center justify-center bg-cricket-cream hover:bg-white border-2 border-dashed border-cricket-green/50 hover:border-cricket-green transition-all duration-300"
-                      >
-                        <Upload className="h-8 w-8 text-cricket-green mb-2" />
-                        <span className="text-xs">Tap to upload</span>
-                      </Button>
-                    </motion.div>
-                  </TabsContent>
-                  <TabsContent value="capture" className="space-y-4 pt-2">
-                    <div className="grid grid-cols-2 gap-3">
-                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                        <Button 
-                          onClick={() => alert("Camera capture feature coming soon")}
-                          className="h-20 flex flex-col items-center justify-center bg-cricket-cream hover:bg-white"
-                        >
-                          <Camera className="h-6 w-6 text-cricket-green mb-1" />
-                          <span className="text-xs">Photo</span>
-                        </Button>
-                      </motion.div>
-                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                        <Button 
-                          onClick={() => alert("Video capture feature coming soon")}
-                          className="h-20 flex flex-col items-center justify-center bg-cricket-cream hover:bg-white"
-                        >
-                          <Video className="h-6 w-6 text-cricket-green mb-1" />
-                          <span className="text-xs">Video</span>
-                        </Button>
-                      </motion.div>
-                    </div>
-                  </TabsContent>
-                </Tabs>
+                      <Upload className="h-8 w-8 text-cricket-green mb-2" />
+                      <span className="text-xs">Tap to upload</span>
+                    </Button>
+                  </motion.div>
+                </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="shot-type" className="text-sm font-medium flex items-center gap-1">
