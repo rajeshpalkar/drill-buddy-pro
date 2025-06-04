@@ -1,12 +1,11 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
   Dumbbell, 
-  bat,
+  Zap,
   Target,
-  user,
+  User,
   Camera
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -21,8 +20,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   
   const navItems = [
-    { to: "/", label: "Shots", icon: <bat size={24} /> },
-    { to: "/fielding-positions", label: "Field", icon: <user size={24} /> },
+    { to: "/", label: "Shots", icon: <Zap size={24} /> },
+    { to: "/fielding-positions", label: "Field", icon: <User size={24} /> },
     { to: "/fitness-training", label: "Train", icon: <Dumbbell size={24} /> },
     { to: "/shot-analysis", label: "Analyze", icon: <Camera size={24} /> },
   ];

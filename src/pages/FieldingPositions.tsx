@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Layout from '@/components/Layout';
-import { user, Target, Play } from 'lucide-react';
+import { User, Target, Play } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const FieldingPositionsPage: React.FC = () => {
@@ -60,7 +60,7 @@ const FieldingPositionsPage: React.FC = () => {
           variants={itemVariants}
         >
           <div className="flex items-center gap-2">
-            <user size={28} className="text-cricket-green" />
+            <User size={28} className="text-cricket-green" />
             <h1 className="text-2xl font-bold text-cricket-green">Fielding Positions</h1>
           </div>
           <Badge className="bg-cricket-green text-white flex items-center gap-1">
@@ -79,11 +79,12 @@ const FieldingPositionsPage: React.FC = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6 bg-white">
-              <div className="w-full flex justify-center bg-cricket-cream/30 rounded-xl p-4">
+              <div className="w-full flex justify-center bg-cricket-cream/30 rounded-xl p-6">
                 <img 
                   src="/lovable-uploads/1444b488-93db-45c9-8678-a25d62efbf85.png" 
                   alt="Cricket fielding positions diagram" 
-                  className="max-w-full h-auto rounded-lg shadow-md border-2 border-cricket-green/10"
+                  className="max-w-full h-auto rounded-lg shadow-md border-2 border-cricket-green/10 object-contain"
+                  style={{ maxHeight: '500px' }}
                 />
               </div>
             </CardContent>
