@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { 
   Card, 
@@ -32,7 +31,7 @@ const TrainPage: React.FC = () => {
         name: "Core Stability Circuit",
         description: "Full body stability for all cricket movements",
         shotFocus: "General cricket fitness",
-        videoId: "FY8swyvGSdE",
+        videoId: "L_xrDAtykMM",
         exercises: ["Plank", "Russian Twists", "Mountain Climbers", "Dead Bug"],
         duration: "15 minutes"
       },
@@ -41,7 +40,7 @@ const TrainPage: React.FC = () => {
         name: "Agility Ladder Drills",
         description: "Footwork and coordination for all shots",
         shotFocus: "Foot movement and timing",
-        videoId: "XBZkJOJ4OXw",
+        videoId: "8PwoytUU06g",
         exercises: ["In-In-Out-Out", "Lateral Shuffles", "High Knees", "Two-in"],
         duration: "10 minutes"
       }
@@ -58,10 +57,10 @@ const TrainPage: React.FC = () => {
       },
       {
         id: "drive2",
-        name: "Medicine Ball Rotations",
+        name: "Medicine Ball Training",
         description: "Core rotation power for driving through the ball",
         shotFocus: "Power generation in drives",
-        videoId: "H8ujVJIo4fI",
+        videoId: "jJJLLs-YSBM",
         exercises: ["Med Ball Slams", "Russian Twists", "Wood Choppers"],
         duration: "12 minutes"
       },
@@ -70,7 +69,7 @@ const TrainPage: React.FC = () => {
         name: "Shoulder Stability",
         description: "Maintain high elbow position during drives",
         shotFocus: "Proper elbow position and follow through",
-        videoId: "qPkD4sWCd_A",
+        videoId: "2NOQGLyOpfM",
         exercises: ["Wall Angels", "Band Pull-Aparts", "Shoulder Dislocations"],
         duration: "10 minutes"
       }
@@ -78,10 +77,10 @@ const TrainPage: React.FC = () => {
     pulls: [
       {
         id: "pull1",
-        name: "Lat Pulldowns",
+        name: "Upper Body Strength",
         description: "Upper body strength for powerful pulling movements",
         shotFocus: "Pull shot and hook shot power",
-        videoId: "JGeVI2R2i5g",
+        videoId: "IODxDxX7oi4",
         exercises: ["Lat Pulldowns", "Seated Rows", "Pull-ups"],
         duration: "15 minutes"
       },
@@ -90,7 +89,7 @@ const TrainPage: React.FC = () => {
         name: "Weight Transfer Drills",
         description: "Quick weight shift to back foot for pulls",
         shotFocus: "Timing and balance for short balls",
-        videoId: "myFctQOxTH0",
+        videoId: "cBLiWhQmhrg",
         exercises: ["Single Leg Bounds", "Lateral Hops", "Box Step-ups"],
         duration: "12 minutes"
       }
@@ -101,7 +100,7 @@ const TrainPage: React.FC = () => {
         name: "Wrist Strengthening",
         description: "Strong wrists for powerful cutting shots",
         shotFocus: "Square cut and late cut control",
-        videoId: "Fgb0uT4F6tk",
+        videoId: "CLJnan_NbbQ",
         exercises: ["Wrist Curls", "Hammer Curls", "Farmer's Walks"],
         duration: "10 minutes"
       },
@@ -130,7 +129,7 @@ const TrainPage: React.FC = () => {
         name: "Balance Training",
         description: "Single-leg stability for leg side shots",
         shotFocus: "Balance during leg side shots",
-        videoId: "CGNG4dP7G6o",
+        videoId: "en1-2k5Ba9E",
         exercises: ["Single Leg Stands", "Bosu Ball Balance", "Wobble Board"],
         duration: "10 minutes"
       }
