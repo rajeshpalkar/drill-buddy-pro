@@ -9,6 +9,7 @@ import ShotsPage from "./pages/Shots";
 import ShotDetailPage from "./pages/ShotDetail";
 import TrainPage from "./pages/Train";
 import FieldingPositionsPage from "./pages/FieldingPositions";
+import ShotAnalysisPage from "./pages/ShotAnalysis";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/shot-technique/:shotId" element={<ShotDetailPage />} />
             <Route path="/fitness-training" element={<TrainPage />} />
             <Route path="/fielding-positions" element={<FieldingPositionsPage />} />
+            <Route path="/shot-analysis" element={<ShotAnalysisPage />} />
             {/* Legacy redirects */}
             <Route path="/shots" element={<Navigate to="/" replace />} />
             <Route path="/shot/:shotId" element={<Navigate to="/shot-technique/:shotId" replace />} />

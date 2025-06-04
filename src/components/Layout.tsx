@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -5,7 +6,8 @@ import {
   Dumbbell, 
   Trophy,
   Target,
-  Users
+  Users,
+  Camera
 } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { motion } from 'framer-motion';
@@ -22,6 +24,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     { to: "/", label: "Shots", icon: <Trophy size={24} /> },
     { to: "/fielding-positions", label: "Field", icon: <Users size={24} /> },
     { to: "/fitness-training", label: "Train", icon: <Dumbbell size={24} /> },
+    { to: "/shot-analysis", label: "Analyze", icon: <Camera size={24} /> },
   ];
   
   const isActive = (path: string) => location.pathname === path;
@@ -48,7 +51,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
             >
-              Drill Buddy
+              Cricket Coach
             </motion.span>
           </Link>
         </div>

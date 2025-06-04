@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Card, 
   CardContent, 
@@ -8,112 +8,136 @@ import {
   CardDescription 
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import Layout from '@/components/Layout';
 import YoutubeEmbed from '@/components/YoutubeEmbed';
-import { Dumbbell, Zap, Heart } from 'lucide-react';
+import { Dumbbell, Zap, Heart, Trophy } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const TrainPage: React.FC = () => {
-  const plyometricExercises = [
-    {
-      id: "p1",
-      name: "Box Jumps",
-      description: "Explosive power for batting and fielding movements",
-      useCase: "Improves leg strength and explosive power for quick movements",
-      videoId: "NBY9-kTuHEk",
-      category: "Plyometric"
-    },
-    {
-      id: "p2", 
-      name: "Medicine Ball Throws",
-      description: "Core power development for batting and bowling",
-      useCase: "Builds rotational power essential for cricket shots",
-      videoId: "dQw4w9WgXcQ",
-      category: "Plyometric"
-    },
-    {
-      id: "p3",
-      name: "Lateral Bounds",
-      description: "Side-to-side explosive movement training",
-      useCase: "Improves agility for fielding and wicket keeping",
-      videoId: "dQw4w9WgXcQ", 
-      category: "Plyometric"
-    }
+  const [selectedShotType, setSelectedShotType] = useState<string>('all');
+
+  const shotTypes = [
+    { id: 'all', name: 'All Shots', icon: Trophy },
+    { id: 'drives', name: 'Drives', icon: Zap },
+    { id: 'pulls', name: 'Pulls & Hooks', icon: Dumbbell },
+    { id: 'cuts', name: 'Cuts', icon: Heart },
+    { id: 'leg-side', name: 'Leg Side', icon: Trophy }
   ];
 
-  const mobilityExercises = [
-    {
-      id: "m1",
-      name: "Hip Circles",
-      description: "Dynamic hip mobility for batting stance",
-      useCase: "Essential for proper batting stance and rotation",
-      videoId: "dQw4w9WgXcQ",
-      category: "Mobility"
-    },
-    {
-      id: "m2",
-      name: "Shoulder Dislocations",
-      description: "Shoulder mobility for bowling and throwing", 
-      useCase: "Prevents injury and improves throwing mechanics",
-      videoId: "dQw4w9WgXcQ",
-      category: "Mobility"
-    },
-    {
-      id: "m3",
-      name: "Leg Swings",
-      description: "Dynamic leg mobility preparation",
-      useCase: "Prepares legs for running and fielding movements",
-      videoId: "dQw4w9WgXcQ",
-      category: "Mobility"
-    }
-  ];
-
-  const stretchExercises = [
-    {
-      id: "s1", 
-      name: "Hamstring Stretch",
-      description: "Static stretch for posterior chain",
-      useCase: "Prevents hamstring injuries during running",
-      videoId: "dQw4w9WgXcQ",
-      category: "Stretch"
-    },
-    {
-      id: "s2",
-      name: "Hip Flexor Stretch", 
-      description: "Opens up hip flexors for better movement",
-      useCase: "Improves batting stance and reduces back strain",
-      videoId: "dQw4w9WgXcQ",
-      category: "Stretch"
-    },
-    {
-      id: "s3",
-      name: "Shoulder Cross-Body Stretch",
-      description: "Shoulder flexibility maintenance",
-      useCase: "Keeps shoulders healthy for bowling and throwing",
-      videoId: "dQw4w9WgXcQ",
-      category: "Stretch"
-    }
-  ];
-
-  const allExercises = [...plyometricExercises, ...mobilityExercises, ...stretchExercises];
-
-  const getIcon = (category: string) => {
-    switch(category) {
-      case 'Plyometric': return <Zap size={18} className="text-orange-500" />;
-      case 'Mobility': return <Dumbbell size={18} className="text-blue-500" />;
-      case 'Stretch': return <Heart size={18} className="text-green-500" />;
-      default: return <Dumbbell size={18} />;
-    }
+  const workoutsByShot = {
+    all: [
+      {
+        id: "general1",
+        name: "Core Stability Circuit",
+        description: "Full body stability for all cricket movements",
+        shotFocus: "General cricket fitness",
+        videoId: "FY8swyvGSdE",
+        exercises: ["Plank", "Russian Twists", "Mountain Climbers", "Dead Bug"],
+        duration: "15 minutes"
+      },
+      {
+        id: "general2",
+        name: "Agility Ladder Drills",
+        description: "Footwork and coordination for all shots",
+        shotFocus: "Foot movement and timing",
+        videoId: "XBZkJOJ4OXw",
+        exercises: ["In-In-Out-Out", "Lateral Shuffles", "High Knees", "Two-in"],
+        duration: "10 minutes"
+      }
+    ],
+    drives: [
+      {
+        id: "drive1",
+        name: "Hip Flexor Stretches",
+        description: "Open up hips for better front foot drives",
+        shotFocus: "Cover drive, straight drive technique",
+        videoId: "UGEpQ1BRx-4",
+        exercises: ["90/90 Hip Stretch", "Couch Stretch", "Hip Flexor Lunge"],
+        duration: "8 minutes"
+      },
+      {
+        id: "drive2",
+        name: "Medicine Ball Rotations",
+        description: "Core rotation power for driving through the ball",
+        shotFocus: "Power generation in drives",
+        videoId: "H8ujVJIo4fI",
+        exercises: ["Med Ball Slams", "Russian Twists", "Wood Choppers"],
+        duration: "12 minutes"
+      },
+      {
+        id: "drive3",
+        name: "Shoulder Stability",
+        description: "Maintain high elbow position during drives",
+        shotFocus: "Proper elbow position and follow through",
+        videoId: "qPkD4sWCd_A",
+        exercises: ["Wall Angels", "Band Pull-Aparts", "Shoulder Dislocations"],
+        duration: "10 minutes"
+      }
+    ],
+    pulls: [
+      {
+        id: "pull1",
+        name: "Lat Pulldowns",
+        description: "Upper body strength for powerful pulling movements",
+        shotFocus: "Pull shot and hook shot power",
+        videoId: "JGeVI2R2i5g",
+        exercises: ["Lat Pulldowns", "Seated Rows", "Pull-ups"],
+        duration: "15 minutes"
+      },
+      {
+        id: "pull2",
+        name: "Weight Transfer Drills",
+        description: "Quick weight shift to back foot for pulls",
+        shotFocus: "Timing and balance for short balls",
+        videoId: "myFctQOxTH0",
+        exercises: ["Single Leg Bounds", "Lateral Hops", "Box Step-ups"],
+        duration: "12 minutes"
+      }
+    ],
+    cuts: [
+      {
+        id: "cut1",
+        name: "Wrist Strengthening",
+        description: "Strong wrists for powerful cutting shots",
+        shotFocus: "Square cut and late cut control",
+        videoId: "Fgb0uT4F6tk",
+        exercises: ["Wrist Curls", "Hammer Curls", "Farmer's Walks"],
+        duration: "10 minutes"
+      },
+      {
+        id: "cut2",
+        name: "Shoulder Mobility",
+        description: "Range of motion for high-handed cuts",
+        shotFocus: "Getting on top of the ball when cutting",
+        videoId: "qOLCeu6VgTI",
+        exercises: ["Arm Circles", "Cross-body Stretch", "Overhead Reach"],
+        duration: "8 minutes"
+      }
+    ],
+    "leg-side": [
+      {
+        id: "leg1",
+        name: "Hip Mobility Flow",
+        description: "Hip flexibility for leg glances and flicks",
+        shotFocus: "Leg glance and hip flick technique",
+        videoId: "zLYOTOBNTc8",
+        exercises: ["Hip Circles", "Leg Swings", "Pigeon Pose"],
+        duration: "12 minutes"
+      },
+      {
+        id: "leg2",
+        name: "Balance Training",
+        description: "Single-leg stability for leg side shots",
+        shotFocus: "Balance during leg side shots",
+        videoId: "CGNG4dP7G6o",
+        exercises: ["Single Leg Stands", "Bosu Ball Balance", "Wobble Board"],
+        duration: "10 minutes"
+      }
+    ]
   };
 
-  const getBadgeColor = (category: string) => {
-    switch(category) {
-      case 'Plyometric': return 'bg-orange-500';
-      case 'Mobility': return 'bg-blue-500'; 
-      case 'Stretch': return 'bg-green-500';
-      default: return 'bg-cricket-green';
-    }
-  };
+  const currentWorkouts = workoutsByShot[selectedShotType as keyof typeof workoutsByShot] || [];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -148,44 +172,83 @@ const TrainPage: React.FC = () => {
         >
           <div className="flex items-center gap-2">
             <Dumbbell size={28} className="text-cricket-green" />
-            <h1 className="text-2xl font-bold text-cricket-green">Training</h1>
+            <h1 className="text-2xl font-bold text-cricket-green">Shot-Specific Training</h1>
           </div>
-          <Badge className="bg-cricket-green text-white px-3 py-1">{allExercises.length}</Badge>
+          <Badge className="bg-cricket-green text-white px-3 py-1">{currentWorkouts.length}</Badge>
+        </motion.div>
+
+        {/* Shot Type Selector */}
+        <motion.div variants={itemVariants}>
+          <Card>
+            <CardHeader>
+              <CardTitle>Select Shot Type to Train</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-wrap gap-2">
+                {shotTypes.map((shot) => {
+                  const IconComponent = shot.icon;
+                  return (
+                    <Button
+                      key={shot.id}
+                      variant={selectedShotType === shot.id ? "default" : "outline"}
+                      className={`flex items-center gap-2 ${
+                        selectedShotType === shot.id ? 'bg-cricket-green hover:bg-cricket-green/90' : ''
+                      }`}
+                      onClick={() => setSelectedShotType(shot.id)}
+                    >
+                      <IconComponent size={16} />
+                      {shot.name}
+                    </Button>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
         
-        {/* Exercises List */}
+        {/* Workouts List */}
         <motion.div 
           className="grid grid-cols-1 gap-6"
           variants={containerVariants}
         >
-          {allExercises.map((exercise) => (
-            <motion.div key={exercise.id} variants={itemVariants}>
+          {currentWorkouts.map((workout) => (
+            <motion.div key={workout.id} variants={itemVariants}>
               <Card className="overflow-hidden hover:shadow-md transition-all">
                 <CardHeader className="pb-3">
                   <div className="flex flex-wrap justify-between items-start gap-2">
                     <div className="flex items-center gap-2">
-                      {getIcon(exercise.category)}
-                      <CardTitle className="text-lg text-cricket-green">{exercise.name}</CardTitle>
+                      <Dumbbell size={18} className="text-cricket-green" />
+                      <CardTitle className="text-lg text-cricket-green">{workout.name}</CardTitle>
                     </div>
-                    <Badge className={`${getBadgeColor(exercise.category)} text-white`}>
-                      {exercise.category}
+                    <Badge className="bg-cricket-green text-white">
+                      {workout.duration}
                     </Badge>
                   </div>
                   <CardDescription className="text-sm">
-                    <strong>Use Case:</strong> {exercise.useCase}
+                    <strong>Focus:</strong> {workout.shotFocus}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <p className="mb-4 text-sm text-gray-600">{exercise.description}</p>
+                      <p className="mb-4 text-sm text-gray-600">{workout.description}</p>
+                      <div className="space-y-2">
+                        <h4 className="font-medium text-sm">Exercises:</h4>
+                        <div className="flex flex-wrap gap-1">
+                          {workout.exercises.map((exercise, idx) => (
+                            <Badge key={idx} variant="outline" className="text-xs">
+                              {exercise}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                    {exercise.videoId && (
+                    {workout.videoId && (
                       <motion.div
                         whileHover={{ scale: 1.02 }}
                         transition={{ type: "spring", stiffness: 400, damping: 10 }}
                       >
-                        <YoutubeEmbed videoId={exercise.videoId} />
+                        <YoutubeEmbed videoId={workout.videoId} />
                       </motion.div>
                     )}
                   </div>
@@ -200,17 +263,17 @@ const TrainPage: React.FC = () => {
           <Card className="bg-gradient-to-r from-cricket-green to-cricket-willow text-white">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Dumbbell size={20} />
-                Training Tips
+                <Trophy size={20} />
+                Shot-Specific Training Tips
               </CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-sm">
-                <li>• Start with 5-10 minutes of mobility exercises</li>
-                <li>• Follow with plyometric exercises for power</li>
-                <li>• End with static stretches to cool down</li>
-                <li>• Always warm up before intense training</li>
-                <li>• Listen to your body and rest when needed</li>
+                <li>• Focus on the specific muscles used in your chosen shot type</li>
+                <li>• Practice the movement patterns that mirror your shot technique</li>
+                <li>• Build strength and flexibility specific to your weaknesses</li>
+                <li>• Combine physical training with technical practice</li>
+                <li>• Progress gradually and listen to your body</li>
               </ul>
             </CardContent>
           </Card>
