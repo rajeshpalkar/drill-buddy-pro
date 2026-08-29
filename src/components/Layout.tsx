@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { 
   Dumbbell, 
   Zap,
@@ -29,7 +30,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const isActive = (path: string) => location.pathname === path;
   
   return (
-    <div className="flex flex-col min-h-screen bg-cricket-cream">
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
       {/* Header */}
       <motion.header 
         className="bg-cricket-green text-white py-3 px-4 shadow-md"
@@ -37,7 +38,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        <div className="container mx-auto flex justify-center items-center">
+        <div className="container mx-auto flex justify-between items-center">
           <Link to="/" className="text-xl font-bold flex items-center gap-2 hover:scale-105 transition-transform">
             <motion.div 
               className="bg-white text-cricket-green p-1.5 rounded-md"
@@ -53,6 +54,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               DrillBuddy.AI
             </motion.span>
           </Link>
+          <ThemeToggle />
         </div>
       </motion.header>
 
@@ -68,7 +70,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
       {/* Mobile Navigation */}
       <motion.nav 
-        className="bg-white border-t border-gray-200 fixed bottom-0 w-full px-4 py-3 shadow-lg z-50"
+        className="bg-card border-t border-border fixed bottom-0 w-full px-4 py-3 shadow-lg z-50"
         initial={{ y: 100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
@@ -89,9 +91,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 >
                   {React.cloneElement(item.icon, { 
                     size: 22, 
-                    className: `${active ? 'text-cricket-green' : 'text-gray-500'}`
+                    className: `${active ? 'text-cricket-green' : 'text-muted-foreground'}`
                   })}
-                  <span className={`text-xs mt-1 ${active ? 'font-medium text-cricket-green' : 'text-gray-500'}`}>
+                  <span className={`text-xs mt-1 ${active ? 'font-medium text-cricket-green' : 'text-muted-foreground'}`}>
                     {item.label}
                   </span>
                   {active && (

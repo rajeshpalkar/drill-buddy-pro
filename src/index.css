@@ -37,6 +37,36 @@
 
     --radius: 0.5rem;
   }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 84% 55%;
+    --primary-foreground: 0 0% 10%;
+
+    --secondary: 0 70% 55%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 210 40% 20%;
+    --muted-foreground: 215.4 16.3% 70%;
+
+    --accent: 210 40% 25%;
+    --accent-foreground: 0 0% 95%;
+
+    --destructive: 0 84.2% 65%;
+    --destructive-foreground: 0 0% 10%;
+
+    --border: 214.3 31.8% 20%;
+    --input: 214.3 31.8% 20%;
+    --ring: 0 84% 55%;
+  }
 }
 
 @layer base {
@@ -45,7 +75,7 @@
   }
 
   body {
-    @apply bg-cricket-cream text-foreground antialiased;
+    @apply bg-background text-foreground antialiased;
   }
   
   /* Animated elements */
@@ -202,7 +232,7 @@
   
   /* Modern card designs */
   .card-athletic {
-    @apply bg-white rounded-lg overflow-hidden border-0 shadow-sm transition-all duration-300;
+    @apply bg-card rounded-lg overflow-hidden border-0 shadow-sm transition-all duration-300;
   }
   
   .card-athletic:hover {
